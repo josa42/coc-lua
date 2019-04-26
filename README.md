@@ -1,6 +1,6 @@
 # coc-lua
 
-Lua language server extension using [`lua.update.lua-lsp`](https://github.com/Alloyed/lua-lsp)
+Lua language server extension using [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
 for [`coc.nvim`](https://github.com/neoclide/coc.nvim).
 
 ## Install
@@ -11,7 +11,7 @@ In your vim/neovim, run command:
 
 ## Features
 
-See [`lua.update.lua-lsp`](https://github.com/Alloyed/lua-lsp)
+See [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
 
 ## Configuration options
 

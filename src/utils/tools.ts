@@ -1,16 +1,13 @@
 import path from 'path'
 import fs from 'fs'
-import { spawn } from 'child_process';
-import { workspace } from 'coc.nvim'
+import {workspace} from 'coc.nvim'
 import which from 'which'
-import { configDir } from './config'
+import {configDir} from './config'
 
 export async function installLuaLsp(force: boolean = false) {
   if (!force && await luaLspExists()) {
     return
   }
-  // const bin = await luaLspBin()
-
   const baseDir = await configDir('tools')
 
   await workspace.runTerminalCommand(

@@ -6,7 +6,8 @@ export async function configDir(...names: string[]): Promise<string> {
   const dir = path.join(home, '.config', 'coc', 'lua', ...names);
 
   return new Promise((resolve) => {
-    fs.mkdirSync(dir, { recursive: true });
+    fs.mkdirSync(dir, {recursive: true})
     resolve(dir)
   })
+
 }

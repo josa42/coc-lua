@@ -1,6 +1,6 @@
 import path from 'path'
-import { workspace, LanguageClient } from 'coc.nvim'
-import { installLuaLsp } from './utils/tools';
+import {workspace, LanguageClient} from 'coc.nvim'
+import {installLuaLsp} from './utils/tools';
 
 export async function version() {
   const v = require(path.resolve(__dirname, '..', 'package.json')).version

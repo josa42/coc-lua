@@ -1,6 +1,7 @@
-import { commands, ExtensionContext, LanguageClient, ServerOptions, workspace, services, LanguageClientOptions } from 'coc.nvim'
-import { installLuaLsp, luaLspBin, commandExists } from './utils/tools'
-import { version, updateLuaLsp } from './commands'
+import {commands, ExtensionContext, LanguageClient, ServerOptions, workspace, services, LanguageClientOptions} from 'coc.nvim'
+import {installLuaLsp, luaLspBin, commandExists} from './utils/tools'
+import {version, updateLuaLsp} from './commands'
+import {setStoragePath} from './utils/config'
 
 export async function activate(context: ExtensionContext): Promise<void> {
 
@@ -14,7 +15,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     await installLuaLsp()
   }
 
-  const serverOptions: ServerOptions = { command }
+  const serverOptions: ServerOptions = {command}
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: ['lua']

@@ -5,6 +5,8 @@ import {setStoragePath} from './utils/config'
 
 export async function activate(context: ExtensionContext): Promise<void> {
 
+  setStoragePath(context.storagePath)
+
   const config = workspace.getConfiguration().get('lua', {}) as any
   if (config.enable === false) {
     return

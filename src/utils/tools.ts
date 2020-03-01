@@ -4,7 +4,7 @@ import {workspace} from 'coc.nvim'
 import which from 'which'
 import {configDir} from './config'
 
-export async function installLuaLsp(force: boolean = false) {
+export async function installLuaLsp(force = false): Promise<void> {
   if (!force && await luaLspExists()) {
     return
   }
@@ -21,11 +21,11 @@ export async function luaLspBin(): Promise<string> {
 
 export async function luaLspExists(): Promise<boolean> {
   const bin = await luaLspBin()
-  return new Promise(resolve => fs.open(bin, 'r', (err, _) => resolve(err === null)));
+  return new Promise(resolve => fs.open(bin, 'r', (err) => resolve(err === null)))
 }
 
 export async function commandExists(command: string): Promise<boolean> {
-  return new Promise(resolve => which(command, (err, _: string) => resolve(err == null)));
+  return new Promise(resolve => which(command, (err) => resolve(err == null)))
 }
 
 

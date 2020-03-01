@@ -1,19 +1,18 @@
 import fs from 'fs'
 import path from 'path'
-import {workspace} from 'coc.nvim';
 
 interface State {
   storagePath?: string
 }
 
-let state: State = {}
+const state: State = {}
 
 export function setStoragePath(dir: string): void {
   state.storagePath = dir
 }
 
 export async function configDir(...names: string[]): Promise<string> {
-  const storage = state.storagePath || (() => {
+  const storage = state.storagePath || ((): string => {
     const home = require('os').homedir()
     return path.join(home, '.config', 'coc', 'lua')
   })()

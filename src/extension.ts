@@ -3,11 +3,16 @@ import {installLuaLsp, luaLspBin, commandExists} from './utils/tools'
 import {version, updateLuaLsp} from './commands'
 import {setStoragePath} from './utils/config'
 
+interface LuaConfig {
+  enable: boolean
+  commandPath: string
+}
+
 export async function activate(context: ExtensionContext): Promise<void> {
 
   setStoragePath(context.storagePath)
 
-  const config = workspace.getConfiguration().get('lua', {}) as any
+  const config = workspace.getConfiguration().get('lua', {}) as LuaConfig
   if (config.enable === false) {
     return
   }

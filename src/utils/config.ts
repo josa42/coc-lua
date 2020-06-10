@@ -1,4 +1,5 @@
 import fs from 'fs'
+import os from 'os'
 import path from 'path'
 
 interface State {
@@ -13,7 +14,7 @@ export function setStoragePath(dir: string): void {
 
 export async function configDir(...names: string[]): Promise<string> {
   const storage = state.storagePath || ((): string => {
-    const home = require('os').homedir()
+    const home = os.homedir()
     return path.join(home, '.config', 'coc', 'lua')
   })()
 

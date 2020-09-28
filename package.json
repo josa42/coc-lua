@@ -23,7 +23,9 @@
     "build:watch": "tsc --watch -p tsconfig.json",
     "prepare": "yarn clean && yarn build",
     "lint:fix": "eslint . --ext .ts,.js --fix",
-    "lint": "eslint . --ext .ts,.js"
+    "lint": "eslint . --ext .ts,.js",
+    "link": "coc-dev link",
+    "unlink": "coc-dev unlink"
   },
   "activationEvents": [
     "onLanguage:lua",
@@ -64,6 +66,7 @@
     "@types/node": "^14.11.2",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
+    "coc-dev-tools": "^0.1.0",
     "coc.nvim": "0.0.79",
     "eslint": "^7.2.0",
     "eslint-config-josa-typescript": "^0.1.2",

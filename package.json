@@ -25,7 +25,8 @@
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "lint": "eslint . --ext .ts,.js",
     "link": "coc-dev link",
-    "unlink": "coc-dev unlink"
+    "unlink": "coc-dev unlink",
+    "test": "yarn lint"
   },
   "activationEvents": [
     "onLanguage:lua",

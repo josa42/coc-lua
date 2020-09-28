@@ -41,6 +41,9 @@
         },
         "lua.commandPath": {
           "type": "string"
+        },
+        "lua.version": {
+          "type": "string"
         }
       }
     },

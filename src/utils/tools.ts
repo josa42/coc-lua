@@ -20,7 +20,12 @@ export async function installLuaLsp(force = false): Promise<void> {
 }
 
 export async function luaLspBin(): Promise<string> {
-  return path.join(await configDir('tools', 'bin'), 'lua-lsp')
+  let executable = 'lua-lsp'
+  if (process.platform === 'win32') {
+    // binary installed by luarocks under Windows has extension '.bat'
+    executable += '.bat'
+  }
+  return path.join(await configDir('tools', 'bin'), executable)
 }
 
 export async function luaLspExists(): Promise<boolean> {

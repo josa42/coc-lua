@@ -52,6 +52,421 @@
           "type": "boolean",
           "default": false,
           "description": "[EXPERIMENTAL] Use sumneko/lua-language-server as language server."
+        },
+        "Lua.color.mode": {
+          "default": "Semantic",
+          "enum": [
+            "Grammar",
+            "Semantic"
+          ],
+          "markdownDescription": "Color mode.",
+          "markdownEnumDescriptions": [
+            "Grammar color.",
+            "Semantic color (Testing. Your color theme must support semantic coloring to be effective.)."
+          ],
+          "scope": "resource",
+          "type": "string"
+        },
+        "Lua.completion.callSnippet": {
+          "default": "Disable",
+          "enum": [
+            "Disable",
+            "Both",
+            "Replace"
+          ],
+          "markdownDescription": "Shows function call snippets.",
+          "markdownEnumDescriptions": [
+            "Only shows `function name`.",
+            "Shows `function name` and `call snippet`.",
+            "Only shows `call snippet.`"
+          ],
+          "scope": "resource",
+          "type": "string"
+        },
+        "Lua.completion.displayContext": {
+          "default": 6,
+          "markdownDescription": "Previewing the relevant code snippet of the suggestion may help you understand the usage of the suggestion. The number set indicates the number of intercepted lines in the code fragment. If it is set to `0`, this feature can be disabled.",
+          "scope": "resource",
+          "type": "integer"
+        },
+        "Lua.completion.enable": {
+          "default": true,
+          "markdownDescription": "Enable completion.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.completion.keywordSnippet": {
+          "default": "Replace",
+          "enum": [
+            "Disable",
+            "Both",
+            "Replace"
+          ],
+          "markdownDescription": "Shows keyword syntax snippets.",
+          "markdownEnumDescriptions": [
+            "Only shows `keyword`.",
+            "Shows `keyword` and `syntax snippet`.",
+            "Only shows `syntax snippet`."
+          ],
+          "scope": "resource",
+          "type": "string"
+        },
+        "Lua.diagnostics.disable": {
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "Disabled diagnostic (Use code in hover brackets).\n```json\n\"Lua.diagnostics.disable\" : [\n    \"unused-local\",\n    \"lowercase-global\"\n]\n```\n",
+          "scope": "resource",
+          "type": "array"
+        },
+        "Lua.diagnostics.enable": {
+          "default": true,
+          "markdownDescription": "Enable diagnostics.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.diagnostics.globals": {
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "Defined global variables.\n```json\n\"Lua.diagnostics.globals\" : [\n    \"GLOBAL1\",\n    \"GLOBAL2\"\n]\n```\n",
+          "scope": "resource",
+          "type": "array"
+        },
+        "Lua.diagnostics.severity": {
+          "markdownDescription": "Modified diagnostic severity.\n```json\n\"Lua.diagnostics.severity\" : {\n    \"redefined-local\" : \"Warning\",\n    \"emmy-lua\" : \"Hint\"\n}\n```\n",
+          "properties": {
+            "ambiguity-1": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "duplicate-index": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "duplicate-method": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "emmy-lua": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "empty-block": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "global-in-nil-env": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "lowercase-global": {
+              "default": "Information",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "newfield-call": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "newline-call": {
+              "default": "Information",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "redefined-local": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "redundant-parameter": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "redundant-value": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "set-const": {
+              "default": "Error",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "set-for-state": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "trailing-space": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "undefined-env-child": {
+              "default": "Information",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "undefined-global": {
+              "default": "Warning",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "unused-function": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "unused-label": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "unused-local": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "unused-vararg": {
+              "default": "Hint",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            }
+          },
+          "scope": "resource",
+          "title": "severity",
+          "type": "object"
+        },
+        "Lua.hover.enable": {
+          "default": true,
+          "markdownDescription": "Enable hover.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.hover.viewNumber": {
+          "default": true,
+          "markdownDescription": "Hover to view numeric content (only if literal is not decimal).",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.hover.viewString": {
+          "default": true,
+          "markdownDescription": "Hover to view the contents of a string (only if the literal contains an escape character).",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.hover.viewStringMax": {
+          "default": 1000,
+          "markdownDescription": "The maximum length of a hover to view the contents of a string.",
+          "scope": "resource",
+          "type": "integer"
+        },
+        "Lua.runtime.path": {
+          "default": [
+            "?.lua",
+            "?/init.lua",
+            "?/?.lua"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "`package.path`",
+          "scope": "resource",
+          "type": "array"
+        },
+        "Lua.runtime.version": {
+          "default": "Lua 5.3",
+          "enum": [
+            "Lua 5.1",
+            "Lua 5.2",
+            "Lua 5.3",
+            "Lua 5.4",
+            "LuaJIT"
+          ],
+          "markdownDescription": "Lua runtime version.",
+          "scope": "resource",
+          "type": "string"
+        },
+        "Lua.signatureHelp.enable": {
+          "default": true,
+          "markdownDescription": "Enable signature help.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.workspace.ignoreDir": {
+          "default": [
+            ".vscode"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "Ignored directories (Use `.gitignore` grammar).\n```json\n\"Lua.workspace.ignoreDir\" : [\n    \"temp/*.*\",\n    \"!temp/*.lua\"\n]\n```\n",
+          "scope": "resource",
+          "type": "array"
+        },
+        "Lua.workspace.ignoreSubmodules": {
+          "default": true,
+          "markdownDescription": "Ignore submodules.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.workspace.library": {
+          "markdownDescription": "Load external library.\nThis feature can load external Lua files, which can be used for definition, automatic completion and other functions. Note that the language server does not monitor changes in external files and needs to restart if the external files are modified.\nThe following example shows loaded files in `C:/lua` and `../lib` ,exclude `../lib/temp`.\n```json\n\"Lua.workspace.library\": {\n    \"C:/lua\": true,\n    \"../lib\": [\n        \"temp/*\"\n    ]\n}\n```\n",
+          "scope": "resource",
+          "type": "object"
+        },
+        "Lua.workspace.maxPreload": {
+          "default": 300,
+          "markdownDescription": "Max preloaded files.",
+          "scope": "resource",
+          "type": "integer"
+        },
+        "Lua.workspace.preloadFileSize": {
+          "default": 100,
+          "markdownDescription": "Skip files larger than this value (KB) when preloading.",
+          "scope": "resource",
+          "type": "integer"
+        },
+        "Lua.workspace.useGitIgnore": {
+          "default": true,
+          "markdownDescription": "Ignore files list in `.gitignore` .",
+          "scope": "resource",
+          "type": "boolean"
         }
       }
     },

@@ -26,10 +26,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   const [command, args] = config.commandPath ? [config.commandPath, []] : await luaLspBin()
 
-  if (!(await commandExists(command))) {
-    const useSumnekoLs = workspace.getConfiguration().get("lua.useSumnekoLs", false)
+  const useSumnekoLs = workspace.getConfiguration().get("lua.useSumnekoLs", false)
+  const name = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
 
-    const name = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
+  if (!(await commandExists(command))) {
     await showInstallStatus(name, async () => {
       await installLuaLsp()
     })
@@ -46,7 +46,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
   context.subscriptions.push(
     services.registLanguageClient(client),
     commands.registerCommand("lua.version", () => version()),
-    commands.registerCommand("lua.update.lua-lsp", () => updateLuaLsp(client))
+    commands.registerCommand("lua.update.lua-lsp", async () =>
+      showInstallStatus(name, async () => await updateLuaLsp(client))
+    )
   )
 }
 

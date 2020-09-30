@@ -16,7 +16,7 @@ const tmpBaseDir = os.tmpdir()
 const { join } = path
 
 export async function install(dir: string): Promise<void> {
-  const { path: tmpDir, dispose } = await mkTmpDir("coc-lua")
+  const { path: tmpDir, dispose } = await mkTmpDir(`coc-lua-${new Date().getTime()}`)
   const { ninjaZip, buildFile } = osEnv()
 
   const ninjaUrl = `https://github.com/ninja-build/ninja/releases/download/${ninjaVersion}/${ninjaZip}`

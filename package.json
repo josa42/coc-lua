@@ -115,7 +115,7 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Disabled diagnostic (Use code in hover brackets).\n```json\n\"Lua.diagnostics.disable\" : [\n    \"unused-local\",\n    \"lowercase-global\"\n]\n```\n",
+          "markdownDescription": "Disabled diagnostic (Use code in hover brackets).\n",
           "scope": "resource",
           "type": "array"
         },
@@ -129,15 +129,76 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Defined global variables.\n```json\n\"Lua.diagnostics.globals\" : [\n    \"GLOBAL1\",\n    \"GLOBAL2\"\n]\n```\n",
+          "markdownDescription": "Defined global variables.\n",
           "scope": "resource",
           "type": "array"
         },
         "Lua.diagnostics.severity": {
-          "markdownDescription": "Modified diagnostic severity.\n```json\n\"Lua.diagnostics.severity\" : {\n    \"redefined-local\" : \"Warning\",\n    \"emmy-lua\" : \"Hint\"\n}\n```\n",
+          "markdownDescription": "Modified diagnostic severity.\n",
           "properties": {
             "ambiguity-1": {
               "default": "Warning",
+              "description": "%config.diagnostics.ambiguity-1%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "circle-doc-class": {
+              "default": "Warning",
+              "description": "%config.diagnostics.circle-doc-class%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "doc-field-no-class": {
+              "default": "Warning",
+              "description": "%config.diagnostics.doc-field-no-class%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "duplicate-doc-class": {
+              "default": "Warning",
+              "description": "%config.diagnostics.duplicate-doc-class%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "duplicate-doc-field": {
+              "default": "Warning",
+              "description": "%config.diagnostics.duplicate-doc-field%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "duplicate-doc-param": {
+              "default": "Warning",
+              "description": "%config.diagnostics.duplicate-doc-param%",
               "enum": [
                 "Error",
                 "Warning",
@@ -149,28 +210,7 @@
             },
             "duplicate-index": {
               "default": "Warning",
-              "enum": [
-                "Error",
-                "Warning",
-                "Information",
-                "Hint"
-              ],
-              "scope": "resource",
-              "type": "string"
-            },
-            "duplicate-method": {
-              "default": "Warning",
-              "enum": [
-                "Error",
-                "Warning",
-                "Information",
-                "Hint"
-              ],
-              "scope": "resource",
-              "type": "string"
-            },
-            "emmy-lua": {
-              "default": "Warning",
+              "description": "%config.diagnostics.duplicate-index%",
               "enum": [
                 "Error",
                 "Warning",
@@ -182,6 +222,7 @@
             },
             "empty-block": {
               "default": "Hint",
+              "description": "%config.diagnostics.empty-block%",
               "enum": [
                 "Error",
                 "Warning",
@@ -193,6 +234,7 @@
             },
             "global-in-nil-env": {
               "default": "Warning",
+              "description": "%config.diagnostics.global-in-nil-env%",
               "enum": [
                 "Error",
                 "Warning",
@@ -204,6 +246,7 @@
             },
             "lowercase-global": {
               "default": "Information",
+              "description": "%config.diagnostics.lowercase-global%",
               "enum": [
                 "Error",
                 "Warning",
@@ -215,6 +258,7 @@
             },
             "newfield-call": {
               "default": "Warning",
+              "description": "%config.diagnostics.newfield-call%",
               "enum": [
                 "Error",
                 "Warning",
@@ -226,6 +270,7 @@
             },
             "newline-call": {
               "default": "Information",
+              "description": "%config.diagnostics.newline-call%",
               "enum": [
                 "Error",
                 "Warning",
@@ -237,6 +282,7 @@
             },
             "redefined-local": {
               "default": "Hint",
+              "description": "%config.diagnostics.redefined-local%",
               "enum": [
                 "Error",
                 "Warning",
@@ -248,6 +294,7 @@
             },
             "redundant-parameter": {
               "default": "Hint",
+              "description": "%config.diagnostics.redundant-parameter%",
               "enum": [
                 "Error",
                 "Warning",
@@ -259,28 +306,7 @@
             },
             "redundant-value": {
               "default": "Hint",
-              "enum": [
-                "Error",
-                "Warning",
-                "Information",
-                "Hint"
-              ],
-              "scope": "resource",
-              "type": "string"
-            },
-            "set-const": {
-              "default": "Error",
-              "enum": [
-                "Error",
-                "Warning",
-                "Information",
-                "Hint"
-              ],
-              "scope": "resource",
-              "type": "string"
-            },
-            "set-for-state": {
-              "default": "Warning",
+              "description": "%config.diagnostics.redundant-value%",
               "enum": [
                 "Error",
                 "Warning",
@@ -292,6 +318,43 @@
             },
             "trailing-space": {
               "default": "Hint",
+              "description": "%config.diagnostics.trailing-space%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "undefined-doc-class": {
+              "default": "Warning",
+              "description": "%config.diagnostics.undefined-doc-class%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "undefined-doc-name": {
+              "default": "Warning",
+              "description": "%config.diagnostics.undefined-doc-name%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "scope": "resource",
+              "type": "string"
+            },
+            "undefined-doc-param": {
+              "default": "Warning",
+              "description": "%config.diagnostics.undefined-doc-param%",
               "enum": [
                 "Error",
                 "Warning",
@@ -303,6 +366,7 @@
             },
             "undefined-env-child": {
               "default": "Information",
+              "description": "%config.diagnostics.undefined-env-child%",
               "enum": [
                 "Error",
                 "Warning",
@@ -314,6 +378,7 @@
             },
             "undefined-global": {
               "default": "Warning",
+              "description": "%config.diagnostics.undefined-global%",
               "enum": [
                 "Error",
                 "Warning",
@@ -325,6 +390,7 @@
             },
             "unused-function": {
               "default": "Hint",
+              "description": "%config.diagnostics.unused-function%",
               "enum": [
                 "Error",
                 "Warning",
@@ -336,6 +402,7 @@
             },
             "unused-label": {
               "default": "Hint",
+              "description": "%config.diagnostics.unused-label%",
               "enum": [
                 "Error",
                 "Warning",
@@ -347,6 +414,7 @@
             },
             "unused-local": {
               "default": "Hint",
+              "description": "%config.diagnostics.unused-local%",
               "enum": [
                 "Error",
                 "Warning",
@@ -358,6 +426,7 @@
             },
             "unused-vararg": {
               "default": "Hint",
+              "description": "%config.diagnostics.unused-vararg%",
               "enum": [
                 "Error",
                 "Warning",
@@ -372,11 +441,29 @@
           "title": "severity",
           "type": "object"
         },
+        "Lua.diagnostics.workspaceDelay": {
+          "default": 0,
+          "markdownDescription": "`Only supported in beta` Latency (milliseconds) for workspace diagnostics. When you start the workspace, or edit any file, the entire workspace will be re-diagnosed in the background. Set to negative to disable workspace diagnostics.",
+          "scope": "resource",
+          "type": "integer"
+        },
+        "Lua.diagnostics.workspaceRate": {
+          "default": 100,
+          "markdownDescription": "`Only supported in beta` Workspace diagnostics run rate (%). Decreasing this value reduces CPU usage, but also reduces the speed of workspace diagnostics. The diagnosis of the file you are currently editing is always done at full speed and is not affected by this setting.",
+          "scope": "resource",
+          "type": "integer"
+        },
         "Lua.hover.enable": {
           "default": true,
           "markdownDescription": "Enable hover.",
           "scope": "resource",
           "type": "boolean"
+        },
+        "Lua.hover.fieldInfer": {
+          "default": 3000,
+          "markdownDescription": "`Only supported in beta` When hovering to view a table, type infer will be performed for each field. When the accumulated time of type infer reaches the set value (MS), the type infer of subsequent fields will be skipped.",
+          "scope": "resource",
+          "type": "integer"
         },
         "Lua.hover.viewNumber": {
           "default": true,
@@ -396,6 +483,18 @@
           "scope": "resource",
           "type": "integer"
         },
+        "Lua.intelliSense.fastGlobal": {
+          "default": true,
+          "markdownDescription": "`Only supported in beta` In the global variable completion, and view `_G` suspension prompt. This will slightly reduce the accuracy of type speculation, but it will have a significant performance improvement for projects that use a lot of global variables.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "Lua.intelliSense.searchDepth": {
+          "default": 0,
+          "markdownDescription": "`Only supported in beta` Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.",
+          "scope": "resource",
+          "type": "integer"
+        },
         "Lua.runtime.path": {
           "default": [
             "?.lua",
@@ -409,8 +508,31 @@
           "scope": "resource",
           "type": "array"
         },
+        "Lua.runtime.special": {
+          "markdownDescription": "`Only supported in beta` The custom global variables are regarded as some special built-in variables, and the language server will provide special support",
+          "patternProperties": {
+            "": {
+              "default": "require",
+              "enum": [
+                "_G",
+                "rawset",
+                "rawget",
+                "setmetatable",
+                "require",
+                "dofile",
+                "loadfile",
+                "pcall",
+                "xpcall"
+              ],
+              "scope": "resource",
+              "type": "string"
+            }
+          },
+          "scope": "resource",
+          "type": "object"
+        },
         "Lua.runtime.version": {
-          "default": "Lua 5.3",
+          "default": "Lua 5.4",
           "enum": [
             "Lua 5.1",
             "Lua 5.2",
@@ -435,7 +557,7 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Ignored directories (Use `.gitignore` grammar).\n```json\n\"Lua.workspace.ignoreDir\" : [\n    \"temp/*.*\",\n    \"!temp/*.lua\"\n]\n```\n",
+          "markdownDescription": "Ignored directories (Use `.gitignore` grammar).\n",
           "scope": "resource",
           "type": "array"
         },
@@ -451,7 +573,7 @@
           "type": "object"
         },
         "Lua.workspace.maxPreload": {
-          "default": 300,
+          "default": 1000,
           "markdownDescription": "Max preloaded files.",
           "scope": "resource",
           "type": "integer"

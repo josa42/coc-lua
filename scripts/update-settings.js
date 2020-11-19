@@ -17,6 +17,7 @@ async function run() {
 
   Object.keys(props)
     .filter((k) => k.match(/^Lua\./))
+    .sort((a, b) => a.localeCompare(b))
     .forEach((k) => delete props[k])
 
   rmKey.forEach((k) => delete settings.properties[k])

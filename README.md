@@ -1,7 +1,13 @@
 # coc-lua
 
+![build binaries](https://github.com/josa42/coc-lua-binaries/workflows/build/badge.svg)
+![test](https://github.com/josa42/coc-lua/workflows/Main/badge.svg)
+
+--------------------------------------------------------------------------------
+
 Lua language server extension using [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
 or [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
+(using pre-build binaries from [coc-lua-binaries](https://github.com/josa42/coc-lua-binaries/releases/tag/latest))
 for [`coc.nvim`](https://github.com/neoclide/coc.nvim).
 
 ## Install
@@ -15,8 +21,8 @@ In your vim/neovim, run command:
 ## Features
 
 See
-    - [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
-    - [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
+- [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
+- [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
 
 ## Configuration options
 

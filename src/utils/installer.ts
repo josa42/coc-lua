@@ -2,12 +2,13 @@
 
 import crypto from "crypto"
 import fs from "fs"
-import fsp from "fs/promises"
 import https from "https"
 import os from "os"
 import path from "path"
 import unzipper from "unzipper"
 import { exec } from "child_process"
+
+const fsp = fs.promises
 
 const ninjaVersion = "v1.9.0"
 const osPlatform = os.platform()

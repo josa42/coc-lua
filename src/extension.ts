@@ -19,8 +19,6 @@ interface LuaConfig {
 export async function activate(context: ExtensionContext): Promise<void> {
   setStoragePath(context.storagePath)
 
-  workspace.showMessage(`???`)
-
   const config = workspace.getConfiguration().get("lua", {}) as LuaConfig
   if (config.enable === false) {
     return
@@ -30,8 +28,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   const useSumnekoLs = workspace.getConfiguration().get("lua.useSumnekoLs", false)
   const name = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
-
-  workspace.showMessage(`name: ${name}`)
 
   if (!(await commandExists(command))) {
     await showInstallStatus(name, async () => {

@@ -1,0 +1,24 @@
+name: update-settings
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: node scripts/update-settings.js
+    - uses: EndBug/add-and-commit@v5
+      with:
+        add: 'package.json'
+        push: true
+        author_name:  Github Action
+        author_email: josa@gesell.me
+        message: '[action] Update settings'
+      env:
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+

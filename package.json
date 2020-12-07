@@ -1,6 +1,6 @@
 {
   "name": "coc-lua",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "lua extension for coc",
   "author": "josa@gesell.me",
   "license": "MIT",

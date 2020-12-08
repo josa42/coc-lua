@@ -7,34 +7,62 @@ import {
   services,
   LanguageClientOptions,
 } from "coc.nvim"
-import { installLuaLsp, luaLspBin, commandExists } from "./utils/tools"
-import { version, updateLuaLsp } from "./commands"
-import { setStoragePath } from "./utils/config"
 
-interface LuaConfig {
-  enable: boolean
-  commandPath: string
-}
+import { installLuaLsp, luaLspCommand } from "./utils/alloyed-lua-lsp"
+import { installLuaLs, luaLsCommandAndArgs } from "./utils/sumneko-lua-ls"
+
+import { commandExists } from "./utils/tools"
+import { version, update } from "./commands"
+import { setStoragePath, getConfig } from "./utils/config"
 
 export async function activate(context: ExtensionContext): Promise<void> {
   setStoragePath(context.storagePath)
 
-  const config = workspace.getConfiguration().get("lua", {}) as LuaConfig
+  const config = getConfig()
   if (config.enable === false) {
     return
   }
 
-  const [command, args] = config.commandPath ? [config.commandPath, []] : await luaLspBin()
+  const client = config.useSumnekoLs
+    ? await createClientSumnekoLs(context, config)
+    : await createClientAlloyedLsp(context, config)
 
-  const useSumnekoLs = workspace.getConfiguration().get("lua.useSumnekoLs", false)
+  context.subscriptions.push(
+    services.registLanguageClient(client),
+    commands.registerCommand("lua.version", () => version()),
+    commands.registerCommand("lua.update", async () => update(client))
+  )
+}
 
-  const nameLong = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
-  const name = useSumnekoLs ? "lua-ls" : "lua-lsp"
+// TODO deprecate and remove once sumneko/lua-language-server is stable
+async function createClientAlloyedLsp(context, config): Promise<LanguageClient> {
+  const command = config.commandPath || (await luaLspCommand())
 
   if (!(await commandExists(command))) {
-    await showInstallStatus(nameLong, async () => {
-      await installLuaLsp()
-    })
+    await installLuaLsp()
+  }
+
+  const serverOptions: ServerOptions = { command }
+
+  const clientOptions: LanguageClientOptions = {
+    documentSelector: ["lua"],
+  }
+
+  return new LanguageClient("lua", "lua", serverOptions, clientOptions)
+}
+
+async function createClientSumnekoLs(context, config): Promise<LanguageClient> {
+  if (config.commandPath) {
+    workspace.showMessage(
+      "[coc-lua] Wrong configuration: Cannot use both lua.commandPath and lua.useSumnekoLs",
+      "warning"
+    )
+  }
+
+  const [command, args] = await luaLsCommandAndArgs()
+
+  if (!(await commandExists(command))) {
+    await installLuaLs()
   }
 
   const serverOptions: ServerOptions = { command, args }
@@ -43,30 +71,5 @@ export async function activate(context: ExtensionContext): Promise<void> {
     documentSelector: ["lua"],
   }
 
-  const client = new LanguageClient("lua", name, serverOptions, clientOptions)
-
-  context.subscriptions.push(
-    services.registLanguageClient(client),
-    commands.registerCommand("lua.version", () => version()),
-    commands.registerCommand("lua.update", async () =>
-      showInstallStatus(nameLong, async () => await updateLuaLsp(client))
-    )
-  )
-}
-
-async function showInstallStatus(name: string, fn: () => Promise<void>) {
-  const statusItem = workspace.createStatusBarItem(90, { progress: true })
-
-  statusItem.text = `Installing '${name}'`
-  statusItem.show()
-
-  try {
-    await fn()
-
-    workspace.showMessage(`Installed '${name}'`)
-  } catch (err) {
-    workspace.showMessage(`Failed to install '${name}'`, "error")
-  }
-
-  statusItem.hide()
+  return new LanguageClient("lua", "lua", serverOptions, clientOptions)
 }

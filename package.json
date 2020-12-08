@@ -24,7 +24,7 @@
     "prepare": "yarn clean && yarn build",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "lint": "eslint . --ext .ts,.js",
-    "link": "coc-dev link",
+    "link": "yarn build && coc-dev link",
     "unlink": "coc-dev unlink",
     "test": "yarn lint"
   },

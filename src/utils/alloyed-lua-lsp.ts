@@ -1,8 +1,10 @@
 import path from "path"
 import fs from "fs"
 import { workspace, LanguageClient } from "coc.nvim"
-import { configDir } from "./config"
+import { configDir, getConfig } from "./config"
 import { showInstallStatus } from "./tools"
+
+const luaLspDir = "alloyed-lua-lsp"
 
 export async function updateLuaLsp(client: LanguageClient): Promise<void> {
   await installLuaLsp(true)
@@ -19,10 +21,10 @@ export async function installLuaLsp(force = false): Promise<void> {
   }
 
   await showInstallStatus("Alloyed/lua-lsp", async () => {
-    const baseDir = await configDir("tools")
+    const baseDir = await configDir(luaLspDir)
     let installCmd = `luarocks install --tree ${baseDir} --server=http://luarocks.org/dev lua-lsp`
 
-    const luaVersion = workspace.getConfiguration().get("lua", {})["version"]
+    const luaVersion = getConfig().version
     if (luaVersion) {
       installCmd += ` --lua-version=${luaVersion}`
     }
@@ -32,7 +34,7 @@ export async function installLuaLsp(force = false): Promise<void> {
 }
 
 export async function luaLspCommand(): Promise<string> {
-  const baseDir = await configDir("tools")
+  const baseDir = await configDir(luaLspDir)
 
   // binary installed by luarocks under Windows has extension '.bat'
   const bin = process.platform === "win32" ? "lua-lsp.bat" : "lua-lsp"

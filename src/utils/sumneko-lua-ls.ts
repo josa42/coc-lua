@@ -5,7 +5,7 @@ import { configDir } from "./config"
 import { osEnv, install } from "./installer"
 import { showInstallStatus } from "./tools"
 
-const luaLsDir = "sumneko_lua"
+const luaLsDir = "sumneko-lua-ls"
 
 export async function updateLuaLs(client: LanguageClient): Promise<void> {
   await installLuaLs(true)
@@ -22,15 +22,15 @@ export async function installLuaLs(force = false): Promise<void> {
   }
 
   await showInstallStatus("sumneko/lua-language-server", async () => {
-    await install(await configDir("tools", luaLsDir))
+    await install(await configDir(luaLsDir))
   })
 }
 
 export async function luaLsCommandAndArgs(): Promise<[string, string[]]> {
-  const baseDir = await configDir("tools")
+  const baseDir = await configDir(luaLsDir)
 
   const { bin } = osEnv()
-  return [path.join(baseDir, luaLsDir, bin), ["-E", path.join(baseDir, luaLsDir, "main.lua")]]
+  return [path.join(baseDir, bin), ["-E", path.join(baseDir, "main.lua")]]
 }
 
 export async function luaLsExists(): Promise<boolean> {

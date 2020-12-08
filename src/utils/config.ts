@@ -7,6 +7,7 @@ interface LuaConfig {
   commandPath: string
   enable: boolean
   useSumnekoLs: boolean
+  version: string
 }
 
 export function getConfig(): LuaConfig {

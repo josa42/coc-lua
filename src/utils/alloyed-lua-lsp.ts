@@ -11,6 +11,11 @@ export async function installLuaLsp(force = false): Promise<void> {
     return
   }
 
+  if (!(await commandExists("luarocks"))) {
+    workspace.showMessage(`"luarocks" needs to be installed: https://luarocks.org/#quick-start`, "error")
+    return
+  }
+
   await showInstallStatus("Alloyed/lua-lsp", async () => {
     const baseDir = await configDir(luaLspDir)
     let installCmd = `luarocks install --tree ${baseDir} --server=http://luarocks.org/dev lua-lsp`

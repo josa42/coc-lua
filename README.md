@@ -24,7 +24,7 @@ See
 - [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
 - [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
 
-## Configuration options
+## Settings
 
 - `lua.enable` set to `false` to disable lua language server.
 - `lua.commandPath` absolute path of lua-lsp executable.
@@ -32,6 +32,111 @@ See
   as language server.
 
 Trigger completion in `coc-settings.json` to get complete list.
+
+### sumneko/lua-language-server
+
+- **`Lua.color.mode`** [Default: `"Semantic"`]  
+  Color mode.
+
+- **`Lua.completion.callSnippet`** [Default: `"Disable"`]  
+  Shows function call snippets.
+
+- **`Lua.completion.displayContext`** [Default: `6`]  
+  Previewing the relevant code snippet of the suggestion may help you understand the usage of the suggestion. The number set indicates the number of intercepted lines in the code fragment. If it is set to `0`, this feature can be disabled.
+
+- **`Lua.completion.enable`** [Default: `true`]  
+  Enable completion.
+
+- **`Lua.completion.keywordSnippet`** [Default: `"Replace"`]  
+  Shows keyword syntax snippets.
+
+- **`Lua.diagnostics.disable`**  
+  Disabled diagnostic (Use code in hover brackets).
+
+- **`Lua.diagnostics.enable`** [Default: `true`]  
+  Enable diagnostics.
+
+- **`Lua.diagnostics.globals`**  
+  Defined global variables.
+
+- **`Lua.diagnostics.severity`**  
+  Modified diagnostic severity.
+
+- **`Lua.diagnostics.workspaceDelay`** [Default: `0`]  
+  Latency (milliseconds) for workspace diagnostics. When you start the workspace, or edit any file, the entire workspace will be re-diagnosed in the background. Set to negative to disable workspace diagnostics.
+
+- **`Lua.diagnostics.workspaceRate`** [Default: `100`]  
+  Workspace diagnostics run rate (%). Decreasing this value reduces CPU usage, but also reduces the speed of workspace diagnostics. The diagnosis of the file you are currently editing is always done at full speed and is not affected by this setting.
+
+- **`Lua.hover.enable`** [Default: `true`]  
+  Enable hover.
+
+- **`Lua.hover.fieldInfer`** [Default: `3000`]  
+  When hovering to view a table, type infer will be performed for each field. When the accumulated time of type infer reaches the set value (MS), the type infer of subsequent fields will be skipped.
+
+- **`Lua.hover.previewFields`** [Default: `100`]  
+  When hovering to view a table, limits the maximum number of previews for fields.
+
+- **`Lua.hover.viewNumber`** [Default: `true`]  
+  Hover to view numeric content (only if literal is not decimal).
+
+- **`Lua.hover.viewString`** [Default: `true`]  
+  Hover to view the contents of a string (only if the literal contains an escape character).
+
+- **`Lua.hover.viewStringMax`** [Default: `1000`]  
+  The maximum length of a hover to view the contents of a string.
+
+- **`Lua.intelliSense.searchDepth`** [Default: `0`]  
+  Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
+
+- **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
+  `package.path`
+
+- **`Lua.runtime.special`**  
+  The custom global variables are regarded as some special built-in variables, and the language server will provide special support
+  The following example shows that 'include' is treated as' require '.
+  ```json
+  "Lua.runtime.special" : {
+      "include" : "require"
+  }
+  ```
+
+- **`Lua.runtime.unicodeName`** [Default: `false`]  
+  Allows Unicode characters in name.
+
+- **`Lua.runtime.version`** [Default: `"Lua 5.4"`]  
+  Lua runtime version.
+
+- **`Lua.signatureHelp.enable`** [Default: `true`]  
+  Enable signature help.
+
+- **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
+  Ignored directories (Use `.gitignore` grammar).
+
+- **`Lua.workspace.ignoreSubmodules`** [Default: `true`]  
+  Ignore submodules.
+
+- **`Lua.workspace.library`**  
+  Load external library.
+  This feature can load external Lua files, which can be used for definition, automatic completion and other functions. Note that the language server does not monitor changes in external files and needs to restart if the external files are modified.
+  The following example shows loaded files in `C:/lua` and `../lib` ,exclude `../lib/temp`.
+  ```json
+  "Lua.workspace.library": {
+      "C:/lua": true,
+      "../lib": [
+          "temp/*"
+      ]
+  }
+  ```
+
+- **`Lua.workspace.maxPreload`** [Default: `1000`]  
+  Max preloaded files.
+
+- **`Lua.workspace.preloadFileSize`** [Default: `100`]  
+  Skip files larger than this value (KB) when preloading.
+
+- **`Lua.workspace.useGitIgnore`** [Default: `true`]  
+  Ignore files list in `.gitignore` .
 
 ## Development
 

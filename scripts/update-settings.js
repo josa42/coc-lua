@@ -25,6 +25,12 @@ async function run() {
   Object.assign(props, settings.properties)
 
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, "  ") + "\n")
+
+  const sections = parseMarkdown(await fs.promises.readFile(path.join(__dirname, "..", "README.md"), "utf-8"))
+  await updateTable(sections)
+
+  const out = sections.flatMap(({ title, lines }) => [title, ...lines]).join("\n")
+  await fs.promises.writeFile(path.join(__dirname, "..", "README.md"), out)
 }
 
 async function get(sourceUrl) {
@@ -47,6 +53,40 @@ async function get(sourceUrl) {
 
     return get(sourceUrl)
   })
+}
+
+async function updateTable(sections) {
+  const pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, "..", "package.json")))
+
+  let lines = Object.entries(pkg.contributes.configuration.properties)
+    .filter(([k]) => k.match(/^Lua/))
+    .sort((p1, p2) => p1[0].localeCompare(p2[0]))
+    .flatMap(([k, v]) => {
+      const lines = []
+      lines.push(`- **\`${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
+      if (v.markdownDescription) {
+        lines.push("  " + v.markdownDescription.trim().split(/\n/).join("\n  "))
+        lines.push("")
+      }
+      return lines
+    })
+
+  sections.find((s) => s.title === "### sumneko/lua-language-server").lines = ["", ...lines]
+}
+
+function parseMarkdown(source) {
+  let section
+
+  return source.split("\n").reduce((sections, line) => {
+    if (line.startsWith("#")) {
+      section = { title: line, lines: [] }
+      sections.push(section)
+    } else {
+      section.lines.push(line)
+    }
+
+    return sections
+  }, [])
 }
 
 run()

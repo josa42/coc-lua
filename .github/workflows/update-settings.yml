@@ -1,0 +1,21 @@
+name: update-settings
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-settings:
+    runs-on: ubuntu-latest
+    steps:
+    - run: node ./scripts/update-settings.js
+    - uses: EndBug/add-and-commit@v5
+      with:
+        push: true
+        author_name:  Github Action
+        author_email: josa@gesell.me
+        message: '[auto] Update Settings'
+      env:
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+

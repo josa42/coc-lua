@@ -24,6 +24,14 @@ See
 - [`lua-lsp`](https://github.com/Alloyed/lua-lsp)
 - [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
 
+## Commands
+
+- `lua.version`
+  Print extension version
+
+- `lua.update`
+  Update language server
+
 ## Settings
 
 - `lua.enable` set to `false` to disable lua language server.

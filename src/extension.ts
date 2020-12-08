@@ -27,10 +27,12 @@ export async function activate(context: ExtensionContext): Promise<void> {
   const [command, args] = config.commandPath ? [config.commandPath, []] : await luaLspBin()
 
   const useSumnekoLs = workspace.getConfiguration().get("lua.useSumnekoLs", false)
-  const name = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
+
+  const nameLong = useSumnekoLs ? "sumneko/lua-language-server" : "Alloyed/lua-lsp"
+  const name = useSumnekoLs ? "lua-ls" : "lua-lsp"
 
   if (!(await commandExists(command))) {
-    await showInstallStatus(name, async () => {
+    await showInstallStatus(nameLong, async () => {
       await installLuaLsp()
     })
   }
@@ -41,13 +43,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
     documentSelector: ["lua"],
   }
 
-  const client = new LanguageClient("lua", useSumnekoLs ? "lua-ls" : "lua-lsp", serverOptions, clientOptions)
+  const client = new LanguageClient("lua", name, serverOptions, clientOptions)
 
   context.subscriptions.push(
     services.registLanguageClient(client),
     commands.registerCommand("lua.version", () => version()),
-    commands.registerCommand("lua.update.lua-lsp", async () =>
-      showInstallStatus(name, async () => await updateLuaLsp(client))
+    commands.registerCommand("lua.update", async () =>
+      showInstallStatus(nameLong, async () => await updateLuaLsp(client))
     )
   )
 }

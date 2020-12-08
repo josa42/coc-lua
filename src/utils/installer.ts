@@ -69,7 +69,7 @@ export function osEnv(): { tarFile: string; bin: string } {
       }
     case "linux":
       return {
-        tarFile: "lua-language-server-ubuntu.tar.gz",
+        tarFile: "lua-language-server-linux.tar.gz",
         bin: join("bin", "Linux", "lua-language-server"),
       }
     case "win32":

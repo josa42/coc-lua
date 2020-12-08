@@ -1,20 +1,10 @@
 import fs from "fs"
 import path from "path"
-import { LanguageClient } from "coc.nvim"
 import { configDir } from "./config"
 import { osEnv, install } from "./installer"
 import { showInstallStatus } from "./tools"
 
 const luaLsDir = "sumneko-lua-ls"
-
-export async function updateLuaLs(client: LanguageClient): Promise<void> {
-  await installLuaLs(true)
-
-  if (client.needsStop()) {
-    await client.stop()
-    client.start()
-  }
-}
 
 export async function installLuaLs(force = false): Promise<void> {
   if (!force && (await luaLsExists())) {

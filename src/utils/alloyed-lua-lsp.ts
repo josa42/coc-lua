@@ -1,19 +1,10 @@
 import path from "path"
 import fs from "fs"
-import { workspace, LanguageClient } from "coc.nvim"
+import { workspace } from "coc.nvim"
 import { configDir, getConfig } from "./config"
-import { showInstallStatus } from "./tools"
+import { commandExists, showInstallStatus } from "./tools"
 
 const luaLspDir = "alloyed-lua-lsp"
-
-export async function updateLuaLsp(client: LanguageClient): Promise<void> {
-  await installLuaLsp(true)
-
-  if (client.needsStop()) {
-    await client.stop()
-    client.start()
-  }
-}
 
 export async function installLuaLsp(force = false): Promise<void> {
   if (!force && (await luaLspExists())) {

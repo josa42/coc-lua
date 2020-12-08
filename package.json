@@ -26,7 +26,7 @@
     "lint": "eslint . --ext .ts,.js",
     "link": "yarn build && coc-dev link",
     "unlink": "coc-dev unlink",
-    "test": "yarn lint"
+    "test": "jest"
   },
   "activationEvents": [
     "onLanguage:lua",
@@ -635,6 +635,7 @@
   },
   "devDependencies": {
     "@chemzqm/tsconfig": "^0.0.3",
+    "@types/jest": "^26.0.18",
     "@types/node": "^14.14.10",
     "@types/tar": "^4.0.4",
     "@types/which": "^1.3.2",
@@ -644,7 +645,9 @@
     "coc.nvim": "0.0.79",
     "eslint": "^7.15.0",
     "eslint-config-josa-typescript": "^0.1.2",
+    "jest": "^26.6.3",
     "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
     "typescript": "^4.1.2"
   },
   "dependencies": {

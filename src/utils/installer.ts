@@ -52,8 +52,8 @@ async function download(sourceUrl: string, targetPath: string): Promise<void> {
 
         res
           .on("data", (data) => file.write(data))
-          .on("end", () => (file.end(), resolve()))
-          .on("error", (err) => reject(err))
+          .on("end", () => (file.end(), setTimeout(() => resolve(), 5)))
+          .on("error", (err: Error) => reject(err))
       })
 
     return get(sourceUrl)

@@ -4,10 +4,7 @@ import path from "path"
 import { workspace } from "coc.nvim"
 
 interface LuaConfig {
-  commandPath: string
   enable: boolean
-  useSumnekoLs: boolean
-  version: string
   checkForUpdates: "disabled" | "inform" | "ask" | "install"
 }
 

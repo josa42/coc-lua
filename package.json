@@ -42,19 +42,6 @@
           "type": "boolean",
           "default": true
         },
-        "lua.commandPath": {
-          "type": "string",
-          "description": "[DEPRECATED] Absolute path of lua-lsp executable (Not supported for sumneko/lua-language-server)"
-        },
-        "lua.version": {
-          "type": "string",
-          "description": "[DEPRECATED] Use Lua.runtime.version instead"
-        },
-        "lua.useSumnekoLs": {
-          "type": "boolean",
-          "default": true,
-          "description": "[DEPRECATED] Use sumneko/lua-language-server as language server."
-        },
         "lua.checkForUpdates": {
           "description": "[EXPERIMENTAL] Check for sumneko/lua-language-server updates on start.",
           "type": "string",

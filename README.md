@@ -148,7 +148,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 ## Credit
 
-- [`sumneko/lua-language-server`]https://github.com/sumneko/lua-language-server#credit()
+- [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server#credit)
 
 ## License
 

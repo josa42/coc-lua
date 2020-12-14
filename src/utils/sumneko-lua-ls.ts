@@ -11,7 +11,7 @@ import { showInstallStatus } from "./tools"
 const luaLsDir = "sumneko-lua-ls"
 const versionURL = "https://github.com/josa42/coc-lua-binaries/releases/download/latest/version.json"
 
-export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "install") {
+export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "install"): Promise<void> {
   const statusItem = workspace.createStatusBarItem(90, { progress: true })
   statusItem.text = "Check for updates"
   statusItem.show()

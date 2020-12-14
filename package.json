@@ -66,6 +66,15 @@
             "install"
           ]
         },
+        "lua.trace.server": {
+          "type": "string",
+          "default": "off",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ]
+        },
         "Lua.color.mode": {
           "default": "Semantic",
           "enum": [

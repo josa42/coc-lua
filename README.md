@@ -35,9 +35,9 @@ See
 ## Settings
 
 - `lua.enable` set to `false` to disable lua language server.
-- `lua.commandPath` absolute path of lua-lsp executable.
-- `lua.useSumnekoLs` **EXPERIMENTAL** Use [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
-  as language server.
+- `lua.commandPath` **[DEPRECATED]** Absolute path of lua-lsp executable (Not supported for sumneko/lua-language-server)
+- `lua.useSumnekoLs` **[DEPRECATED]** Use [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server) as language server.  
+  **Enabled by default now!**
 
 Trigger completion in `coc-settings.json` to get complete list.
 

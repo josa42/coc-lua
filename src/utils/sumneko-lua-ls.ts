@@ -21,8 +21,6 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
     const linfo = await getVersionInstalledInfo()
     if (new Date(linfo.date) > new Date(linfo.date)) {
       handleUpdateAction(action)
-    } else {
-      workspace.showMessage(`${JSON.stringify(linfo)} => ${JSON.stringify(rinfo)}`, "more")
     }
   } catch (err) {
     workspace.showMessage(JSON.stringify(err), "error")

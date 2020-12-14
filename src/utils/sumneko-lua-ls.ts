@@ -19,7 +19,7 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
   try {
     const rinfo = await getVersionInfo()
     const linfo = await getVersionInstalledInfo()
-    if (true || new Date(linfo.date) > new Date(linfo.date)) {
+    if (new Date(linfo.date) > new Date(linfo.date)) {
       handleUpdateAction(action)
     } else {
       workspace.showMessage(`${JSON.stringify(linfo)} => ${JSON.stringify(rinfo)}`, "more")

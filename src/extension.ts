@@ -9,7 +9,7 @@ import {
 } from "coc.nvim"
 
 import { installLuaLsp, luaLspCommand } from "./utils/alloyed-lua-lsp"
-import { installLuaLs, luaLsCommandAndArgs } from "./utils/sumneko-lua-ls"
+import { installLuaLs, luaLsCommandAndArgs, checkForUpdate } from "./utils/sumneko-lua-ls"
 
 import { commandExists } from "./utils/tools"
 import { version, update } from "./commands"
@@ -21,6 +21,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
   const config = getConfig()
   if (config.enable === false) {
     return
+  }
+
+  if (config.useSumnekoLs && config.checkForUpdates !== "disabled") {
+    setTimeout(() => checkForUpdate(config.checkForUpdates), 0)
   }
 
   const client = config.useSumnekoLs

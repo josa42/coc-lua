@@ -8,6 +8,7 @@ interface LuaConfig {
   enable: boolean
   useSumnekoLs: boolean
   version: string
+  checkForUpdates: "disabled" | "inform" | "ask" | "install"
 }
 
 export function getConfig(): LuaConfig {

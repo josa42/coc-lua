@@ -53,6 +53,17 @@
           "default": false,
           "description": "[EXPERIMENTAL] Use sumneko/lua-language-server as language server."
         },
+        "lua.checkForUpdates": {
+          "description": "[EXPERIMENTAL] Check for Use sumneko/lua-language-server updates on start.",
+          "type": "string",
+          "default": "disabled",
+          "enum": [
+            "disabled",
+            "inform",
+            "ask",
+            "install"
+          ]
+        },
         "Lua.color.mode": {
           "default": "Semantic",
           "enum": [

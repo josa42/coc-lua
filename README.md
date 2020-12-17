@@ -62,6 +62,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.diagnostics.globals`**  
   Defined global variables.
 
+- **`Lua.diagnostics.neededFileStatus`**  
+  If you want to check only opened files, choice Opened; else choice Any.
+
 - **`Lua.diagnostics.severity`**  
   Modified diagnostic severity.
 
@@ -112,6 +115,11 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 - **`Lua.signatureHelp.enable`** [Default: `true`]  
   Enable signature help.
+
+- **`Lua.telemetry.enable`** [Default: `true`]  
+  Enable telemetry to send your editor information and error logs over the network
+  * [What data will be sent](https://github.com/sumneko/lua-language-server/blob/master/script/service/telemetry.lua)
+  * [How to use this data](https://github.com/sumneko/lua-telemetry-server/tree/master/method)
 
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
   Ignored directories (Use `.gitignore` grammar).

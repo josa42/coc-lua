@@ -95,6 +95,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.intelliSense.searchDepth`** [Default: `0`]  
   Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
 
+- **`Lua.runtime.nonstandardSymbol`**  
+  %config.runtime.nonstandardSymbol%
+
 - **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
   `package.path`
 

@@ -96,7 +96,7 @@ Trigger completion in `coc-settings.json` to get complete list.
   Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
 
 - **`Lua.runtime.nonstandardSymbol`**  
-  %config.runtime.nonstandardSymbol%
+  Supports non-standard symbols. Make sure that your runtime environment supports these symbols.
 
 - **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
   `package.path`

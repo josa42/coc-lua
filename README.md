@@ -53,6 +53,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.completion.keywordSnippet`** [Default: `"Replace"`]  
   Shows keyword syntax snippets.
 
+- **`Lua.completion.workspaceWord`** [Default: `true`]  
+  Shows words within the workspace.
+
 - **`Lua.diagnostics.disable`**  
   Disabled diagnostic (Use code in hover brackets).
 

@@ -136,15 +136,6 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.workspace.library`**  
   Load external library.
   This feature can load external Lua files, which can be used for definition, automatic completion and other functions. Note that the language server does not monitor changes in external files and needs to restart if the external files are modified.
-  The following example shows loaded files in `C:/lua` and `../lib` ,exclude `../lib/temp`.
-  ```json
-  "Lua.workspace.library": {
-      "C:/lua": true,
-      "../lib": [
-          "temp/*"
-      ]
-  }
-  ```
 
 - **`Lua.workspace.maxPreload`** [Default: `1000`]  
   Max preloaded files.

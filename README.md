@@ -104,6 +104,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
   `package.path`
 
+- **`Lua.runtime.plugin`** [Default: `".vscode/lua/plugin.lua"`]  
+  (Proposed) Plugin path.
+
 - **`Lua.runtime.special`**  
   The custom global variables are regarded as some special built-in variables, and the language server will provide special support
   The following example shows that 'include' is treated as' require '.

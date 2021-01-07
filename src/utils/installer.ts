@@ -16,7 +16,7 @@ const tmpBaseDir = os.tmpdir()
 
 const { join } = path
 
-export function releaseDownloadsURL(filePath, preRelease = false) {
+export function releaseDownloadsURL(filePath: string): string {
   return getConfig().installPreReleases
     ? `https://github.com/josa42/coc-lua-binaries/releases/download/latest/${filePath}`
     : `https://github.com/josa42/coc-lua-binaries/releases/latest/download/${filePath}`

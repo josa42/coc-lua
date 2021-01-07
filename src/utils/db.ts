@@ -2,8 +2,10 @@ import * as fs from "fs"
 import * as path from "path"
 import { configDir } from "./config"
 
+type DBValue = string | number | boolean | undefined
+
 interface DB {
-  [key: string]: any
+  [key: string]: DBValue
 }
 
 async function dbPath(): Promise<string> {
@@ -23,13 +25,13 @@ async function read(): Promise<DB> {
   }
 }
 
-export async function dbSet<T>(key: string, value: T) {
+export async function dbSet<T extends DBValue>(key: string, value: T): Promise<void> {
   const db = await read()
   db[key] = value
   await write(db)
 }
 
-export async function dbGet<T>(key: string, defaultValue?: T) {
+export async function dbGet<T extends DBValue>(key: string, defaultValue?: T): Promise<T> {
   const db = await read()
   const value = db[key]
 

@@ -10,7 +10,7 @@ interface LuaConfig {
 }
 
 export function getConfig(): LuaConfig {
-  return workspace.getConfiguration().get("lua", {}) as LuaConfig
+  return workspace.getConfiguration().get<LuaConfig>("lua")
 }
 
 interface State {

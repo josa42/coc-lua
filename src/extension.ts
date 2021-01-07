@@ -1,7 +1,6 @@
 import { commands, ExtensionContext, LanguageClient, ServerOptions, services, LanguageClientOptions } from "coc.nvim"
 
-import { installLuaLs, luaLsCommandAndArgs, checkForUpdate } from "./utils/sumneko-lua-ls"
-
+import { installLuaLs, luaLsCommandAndArgs, checkForUpdate } from "./utils/installer"
 import { commandExists } from "./utils/tools"
 import { version, update } from "./commands"
 import { setStoragePath, getConfig } from "./utils/config"

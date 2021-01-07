@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { installLuaLs } from "./utils/sumneko-lua-ls"
+import { installLuaLs } from "./utils/installer"
 import { window, LanguageClient } from "coc.nvim"
 
 export async function version(): Promise<void> {

@@ -7,10 +7,16 @@ import { workspace } from "coc.nvim"
 import { configDir } from "./config"
 import { osEnv, install, releaseDownloadsURL } from "./installer"
 import { showInstallStatus } from "./tools"
+import { dbGet, dbSet } from "./db"
 
 const luaLsDir = "sumneko-lua-ls"
+const oneDayMS = 24 * 60 * 60 * 1000
 
 export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "install"): Promise<void> {
+  if (!(await shouldCheck())) {
+    return
+  }
+
   const statusItem = workspace.createStatusBarItem(90, { progress: true })
   statusItem.text = "Check for updates"
   statusItem.show()
@@ -26,6 +32,19 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
   }
 
   statusItem.hide()
+}
+
+async function shouldCheck(): Promise<boolean> {
+  const now = new Date().getTime()
+  const last = await dbGet("last-update-check", -1)
+  const diff = now - last
+
+  if (last === -1 || diff > oneDayMS) {
+    await dbSet("last-update-check", now)
+    return true
+  }
+
+  return false
 }
 
 async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "install", version: string) {

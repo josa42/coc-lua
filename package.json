@@ -43,9 +43,9 @@
           "default": true
         },
         "lua.checkForUpdates": {
-          "description": "[EXPERIMENTAL] Check for sumneko/lua-language-server updates on start.",
+          "description": "Check for sumneko/lua-language-server updates on start.",
           "type": "string",
-          "default": "disabled",
+          "default": "inform",
           "enum": [
             "disabled",
             "inform",

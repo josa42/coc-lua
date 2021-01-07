@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import * as https from "https"
 
-import { workspace } from "coc.nvim"
+import { window } from "coc.nvim"
 
 import { configDir } from "./config"
 import { osEnv, install, releaseDownloadsURL } from "./installer"
@@ -17,7 +17,7 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
     return
   }
 
-  const statusItem = workspace.createStatusBarItem(90, { progress: true })
+  const statusItem = window.createStatusBarItem(90, { progress: true })
   statusItem.text = "Check for updates"
   statusItem.show()
 
@@ -28,7 +28,7 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
       handleUpdateAction(action, rinfo.version)
     }
   } catch (err) {
-    workspace.showMessage(JSON.stringify(err), "error")
+    window.showMessage(JSON.stringify(err), "error")
   }
 
   statusItem.hide()
@@ -50,7 +50,7 @@ async function shouldCheck(): Promise<boolean> {
 async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "install", version: string) {
   switch (action) {
     case "ask":
-      if (await workspace.showPrompt(`sumneko/lua-language-server ${version} is available. Install?`)) {
+      if (await window.showPrompt(`sumneko/lua-language-server ${version} is available. Install?`)) {
         installLuaLs(true)
       }
       break
@@ -58,7 +58,7 @@ async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "insta
       installLuaLs(true)
       break
     case "inform":
-      workspace.showMessage(`sumneko/lua-language-server ${version} is available. Run ":CocCommand lua.update"`)
+      window.showMessage(`sumneko/lua-language-server ${version} is available. Run ":CocCommand lua.update"`)
       break
   }
 }
@@ -97,7 +97,7 @@ async function getVersionInstalledInfo(): Promise<versionInfo> {
     return JSON.parse(await fs.promises.readFile(fpath, "utf-8"))
   } catch (err) {
     if (err.code !== "ENOENT") {
-      workspace.showMessage(JSON.stringify(err), "error")
+      window.showMessage(JSON.stringify(err), "error")
     }
 
     return { date: "", version: "", commit: "" }

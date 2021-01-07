@@ -53,6 +53,11 @@
             "install"
           ]
         },
+        "lua.installPreReleases": {
+          "description": "Install latest pre-release of sumneko/lua-language-server.",
+          "type": "boolean",
+          "default": false
+        },
         "lua.trace.server": {
           "type": "string",
           "default": "off",

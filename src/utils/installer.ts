@@ -7,6 +7,8 @@ import * as os from "os"
 import * as path from "path"
 import * as tar from "tar"
 
+import { getConfig } from "./config"
+
 const fsp = fs.promises
 
 const osPlatform = os.platform()
@@ -14,9 +16,15 @@ const tmpBaseDir = os.tmpdir()
 
 const { join } = path
 
+export function releaseDownloadsURL(filePath, preRelease = false) {
+  return getConfig().installPreReleases
+    ? `https://github.com/josa42/coc-lua-binaries/releases/download/latest/${filePath}`
+    : `https://github.com/josa42/coc-lua-binaries/releases/latest/download/${filePath}`
+}
+
 export async function install(dir: string): Promise<void> {
   const { tarFile } = osEnv()
-  await downloadTar(`https://github.com/josa42/coc-lua-binaries/releases/download/latest/${tarFile}`, dir)
+  await downloadTar(releaseDownloadsURL(tarFile), dir)
 }
 
 async function downloadTar(sourceUrl: string, targetPath: string) {

@@ -5,11 +5,10 @@ import * as https from "https"
 import { workspace } from "coc.nvim"
 
 import { configDir } from "./config"
-import { osEnv, install } from "./installer"
+import { osEnv, install, releaseDownloadsURL } from "./installer"
 import { showInstallStatus } from "./tools"
 
 const luaLsDir = "sumneko-lua-ls"
-const versionURL = "https://github.com/josa42/coc-lua-binaries/releases/download/latest/version.json"
 
 export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "install"): Promise<void> {
   const statusItem = workspace.createStatusBarItem(90, { progress: true })
@@ -20,7 +19,7 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
     const rinfo = await getVersionInfo()
     const linfo = await getVersionInstalledInfo()
     if (new Date(rinfo.date) > new Date(linfo.date)) {
-      handleUpdateAction(action)
+      handleUpdateAction(action, rinfo.version)
     }
   } catch (err) {
     workspace.showMessage(JSON.stringify(err), "error")
@@ -29,10 +28,10 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
   statusItem.hide()
 }
 
-async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "install") {
+async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "install", version: string) {
   switch (action) {
     case "ask":
-      if (await workspace.showPrompt("New version of sumneko/lua-language-server available. Install?")) {
+      if (await workspace.showPrompt(`sumneko/lua-language-server ${version} is available. Install?`)) {
         installLuaLs(true)
       }
       break
@@ -40,7 +39,7 @@ async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "insta
       installLuaLs(true)
       break
     case "inform":
-      workspace.showMessage('New version of sumneko/lua-language-server available. Run ":CocCommand lua.update"')
+      workspace.showMessage(`sumneko/lua-language-server ${version} is available. Run ":CocCommand lua.update"`)
       break
   }
 }
@@ -104,6 +103,6 @@ async function getVersionInfo(): Promise<versionInfo> {
           .on("error", (err: Error) => reject(err))
       })
 
-    return get(versionURL)
+    return get(releaseDownloadsURL("version.json"))
   })
 }

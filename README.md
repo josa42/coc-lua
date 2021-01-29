@@ -130,6 +130,12 @@ Trigger completion in `coc-settings.json` to get complete list.
   * [What data will be sent](https://github.com/sumneko/lua-language-server/blob/master/script/service/telemetry.lua)
   * [How to use this data](https://github.com/sumneko/lua-telemetry-server/tree/master/method)
 
+- **`Lua.window.progress`** [Default: `true`]  
+  %config.window.progress
+
+- **`Lua.window.statusBar`** [Default: `true`]  
+  %config.window.statusBar
+
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
   Ignored directories (Use `.gitignore` grammar).
 

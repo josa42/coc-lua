@@ -77,6 +77,18 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.diagnostics.workspaceRate`** [Default: `100`]  
   Workspace diagnostics run rate (%). Decreasing this value reduces CPU usage, but also reduces the speed of workspace diagnostics. The diagnosis of the file you are currently editing is always done at full speed and is not affected by this setting.
 
+- **`Lua.hint.enable`** [Default: `true`]  
+  Enabel hint.
+
+- **`Lua.hint.paramName`** [Default: `true`]  
+  Hint parameter name when the parameter called is literal.
+
+- **`Lua.hint.paramType`** [Default: `true`]  
+  Show type hints at the parameter of the function.
+
+- **`Lua.hint.setType`** [Default: `false`]  
+  Hint type at assignment operation.
+
 - **`Lua.hover.enable`** [Default: `true`]  
   Enable hover.
 
@@ -130,11 +142,11 @@ Trigger completion in `coc-settings.json` to get complete list.
   * [What data will be sent](https://github.com/sumneko/lua-language-server/blob/master/script/service/telemetry.lua)
   * [How to use this data](https://github.com/sumneko/lua-telemetry-server/tree/master/method)
 
-- **`Lua.window.progress`** [Default: `true`]  
-  %config.window.progress
+- **`Lua.window.progressBar`** [Default: `true`]  
+  Show progress bar in status bar.
 
 - **`Lua.window.statusBar`** [Default: `true`]  
-  %config.window.statusBar
+  Show extension status in status bar.
 
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
   Ignored directories (Use `.gitignore` grammar).

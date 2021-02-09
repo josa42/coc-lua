@@ -77,7 +77,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.diagnostics.workspaceRate`** [Default: `100`]  
   Workspace diagnostics run rate (%). Decreasing this value reduces CPU usage, but also reduces the speed of workspace diagnostics. The diagnosis of the file you are currently editing is always done at full speed and is not affected by this setting.
 
-- **`Lua.hint.enable`** [Default: `true`]  
+- **`Lua.hint.enable`** [Default: `false`]  
   Enabel hint.
 
 - **`Lua.hint.paramName`** [Default: `true`]  

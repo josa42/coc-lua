@@ -149,7 +149,7 @@ Trigger completion in `coc-settings.json` to get complete list.
   Show extension status in status bar.
 
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
-  Ignored directories (Use `.gitignore` grammar).
+  Ignored files and directories (Use `.gitignore` grammar).
 
 - **`Lua.workspace.ignoreSubmodules`** [Default: `true`]  
   Ignore submodules.

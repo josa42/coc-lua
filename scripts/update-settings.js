@@ -9,9 +9,9 @@ const pkgPath = path.join(__dirname, "..", "package.json")
 const rmKey = ["Lua.awakened.cat", "Lua.develop.enable", "Lua.develop.debuggerPort", "Lua.develop.debuggerWait"]
 
 async function run() {
-  const settings = JSON.parse(
+  const settings = fixSchema(JSON.parse(
     await get("https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json")
-  )
+  ))
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"))
   const props = pkg.contributes.configuration.properties
 
@@ -87,6 +87,28 @@ function parseMarkdown(source) {
 
     return sections
   }, [])
+}
+
+function fixSchema(schema) {
+
+  if (schema.properties) {
+    Object.entries(schema.properties).forEach(([key, value]) => {
+      schema.properties[key] = fixSchema(value)
+    })
+  }
+
+  if (schema.patternProperties) {
+    Object.entries(schema.patternProperties).forEach(([key, value]) => {
+      if (key === '') {
+        delete schema.patternProperties[key]
+        key = '.*'
+      }
+
+      schema.patternProperties[key] = fixSchema(value)
+    })
+  }
+
+  return schema
 }
 
 run()

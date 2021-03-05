@@ -110,6 +110,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.intelliSense.searchDepth`** [Default: `0`]  
   Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
 
+- **`Lua.runtime.fileEncoding`** [Default: `"utf8"`]  
+  File encoding. The `ansi` option is only available under the `Windows` platform.
+
 - **`Lua.runtime.nonstandardSymbol`**  
   Supports non-standard symbols. Make sure that your runtime environment supports these symbols.
 

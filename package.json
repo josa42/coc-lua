@@ -1128,9 +1128,12 @@
           "type": "boolean"
         },
         "Lua.workspace.library": {
-          "markdownDescription": "Load external library.\nThis feature can load external Lua files, which can be used for definition, automatic completion and other functions. Note that the language server does not monitor changes in external files and needs to restart if the external files are modified.\n",
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "The directory path of the external function library.\nThe language service will additionally load the lua files in these directories, even if they are not in the current working spcae, for definition, completion and other features.\n",
           "scope": "resource",
-          "type": "object"
+          "type": "array"
         },
         "Lua.workspace.maxPreload": {
           "default": 1000,

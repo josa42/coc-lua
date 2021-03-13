@@ -110,6 +110,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.intelliSense.searchDepth`** [Default: `0`]  
   Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
 
+- **`Lua.misc.parameters`** [Default: `""`]  
+  [Command line parameters](https://github.com/sumneko/lua-telemetry-server/tree/master/method) when starting the language service in VSCode.
+
 - **`Lua.runtime.fileEncoding`** [Default: `"utf8"`]  
   File encoding. The `ansi` option is only available under the `Windows` platform.
 

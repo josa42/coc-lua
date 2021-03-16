@@ -113,6 +113,13 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.misc.parameters`** [Default: `""`]  
   [Command line parameters](https://github.com/sumneko/lua-telemetry-server/tree/master/method) when starting the language service in VSCode.
 
+- **`Lua.runtime.builtin`**  
+  Adjust the enabled state of the built-in library. You can disable (or redefine) the non-existent library according to the actual runtime environment.
+  
+  * `default`: Indicates that the library will be enabled or disabled according to the runtime version
+  * `enable`: always enable
+  * `disable`: always disable
+
 - **`Lua.runtime.fileEncoding`** [Default: `"utf8"`]  
   File encoding. The `ansi` option is only available under the `Windows` platform.
 

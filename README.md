@@ -169,7 +169,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 - **`Lua.workspace.library`**  
   The directory path of the external function library.
-  The language service will additionally load the lua files in these directories, even if they are not in the current working spcae, for definition, completion and other features.
+  The language service will additionally load the lua files in these directories, even if they are not in the current workspace, for definition, completion and other features.
 
 - **`Lua.workspace.maxPreload`** [Default: `1000`]  
   Max preloaded files.

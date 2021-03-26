@@ -150,7 +150,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.signatureHelp.enable`** [Default: `true`]  
   Enable signature help.
 
-- **`Lua.telemetry.enable`** [Default: `true`]  
+- **`Lua.telemetry.enable`** [Default: `null`]  
   Enable telemetry to send your editor information and error logs over the network
   * [What data will be sent](https://github.com/sumneko/lua-language-server/blob/master/script/service/telemetry.lua)
   * [How to use this data](https://github.com/sumneko/lua-telemetry-server/tree/master/method)

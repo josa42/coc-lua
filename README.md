@@ -151,9 +151,7 @@ Trigger completion in `coc-settings.json` to get complete list.
   Enable signature help.
 
 - **`Lua.telemetry.enable`** [Default: `null`]  
-  Enable telemetry to send your editor information and error logs over the network
-  * [What data will be sent](https://github.com/sumneko/lua-language-server/blob/master/script/service/telemetry.lua)
-  * [How to use this data](https://github.com/sumneko/lua-telemetry-server/tree/master/method)
+  Enable telemetry to send your editor information and error logs over the network. Read our privacy policy [here](https://github.com/sumneko/lua-language-server/wiki/Privacy-Policy).
 
 - **`Lua.window.progressBar`** [Default: `true`]  
   Show progress bar in status bar.

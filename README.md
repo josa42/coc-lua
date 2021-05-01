@@ -41,6 +41,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.color.mode`** [Default: `"Semantic"`]  
   Color mode.
 
+- **`Lua.completion.autoRequire`** [Default: `true`]  
+  When the input looks like a file name, automatically `require` this file.
+
 - **`Lua.completion.callSnippet`** [Default: `"Disable"`]  
   Shows function call snippets.
 
@@ -91,6 +94,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 - **`Lua.hover.enable`** [Default: `true`]  
   Enable hover.
+
+- **`Lua.hover.enumsLimit`** [Default: `5`]  
+  When the value corresponds to multiple types, limit the number of types displaying.
 
 - **`Lua.hover.fieldInfer`** [Default: `3000`]  
   When hovering to view a table, type infer will be performed for each field. When the accumulated time of type infer reaches the set value (MS), the type infer of subsequent fields will be skipped.

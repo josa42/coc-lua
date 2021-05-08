@@ -56,6 +56,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.completion.keywordSnippet`** [Default: `"Replace"`]  
   Shows keyword syntax snippets.
 
+- **`Lua.completion.showParams`** [Default: `true`]  
+  Display parameters in completion list. When the function has multiple definitions, they will be displayed separately.
+
 - **`Lua.completion.workspaceWord`** [Default: `true`]  
   Shows words within the workspace.
 

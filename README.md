@@ -101,10 +101,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.hover.enumsLimit`** [Default: `5`]  
   When the value corresponds to multiple types, limit the number of types displaying.
 
-- **`Lua.hover.fieldInfer`** [Default: `3000`]  
-  When hovering to view a table, type infer will be performed for each field. When the accumulated time of type infer reaches the set value (MS), the type infer of subsequent fields will be skipped.
-
-- **`Lua.hover.previewFields`** [Default: `100`]  
+- **`Lua.hover.previewFields`** [Default: `20`]  
   When hovering to view a table, limits the maximum number of previews for fields.
 
 - **`Lua.hover.viewNumber`** [Default: `true`]  
@@ -138,8 +135,8 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
   `package.path`
 
-- **`Lua.runtime.plugin`** [Default: `".vscode/lua/plugin.lua"`]  
-  (Proposed) Plugin path.
+- **`Lua.runtime.plugin`** [Default: `""`]  
+  Plugin path. Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/Plugin) to learn more.
 
 - **`Lua.runtime.special`**  
   The custom global variables are regarded as some special built-in variables, and the language server will provide special support

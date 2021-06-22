@@ -113,10 +113,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.hover.viewStringMax`** [Default: `1000`]  
   The maximum length of a hover to view the contents of a string.
 
-- **`Lua.intelliSense.searchDepth`** [Default: `0`]  
-  Set the search depth for IntelliSense. Increasing this value increases accuracy, but decreases performance. Different workspace have different tolerance for this setting. Please adjust it to the appropriate value.
-
-- **`Lua.misc.parameters`** [Default: `""`]  
+- **`Lua.misc.parameters`**  
   [Command line parameters](https://github.com/sumneko/lua-telemetry-server/tree/master/method) when starting the language service in VSCode.
 
 - **`Lua.runtime.builtin`**  

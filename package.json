@@ -58,6 +58,11 @@
           "type": "boolean",
           "default": false
         },
+        "lua.serverPath": {
+          "description": "Path to lua-language-server executable (points to bundled binary by default). If set, then checkForUpdates has no effect.",
+          "type": "string",
+          "default": ""
+        },
         "lua.trace.server": {
           "type": "string",
           "default": "off",

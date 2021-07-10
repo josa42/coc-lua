@@ -6,6 +6,7 @@ import { workspace } from "coc.nvim"
 interface LuaConfig {
   enable: boolean
   checkForUpdates: "disabled" | "inform" | "ask" | "install"
+  serverPath: string
   installPreReleases: boolean
 }
 

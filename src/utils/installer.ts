@@ -161,7 +161,12 @@ export async function luaLsCommandAndArgs(): Promise<[string, string[]]> {
   const baseDir = await configDir(luaLsDir)
 
   const { bin } = osEnv()
-  return [path.join(baseDir, bin), ["-E", path.join(baseDir, "main.lua")]]
+  const { serverPath } = getConfig()
+
+  return [
+    serverPath.length > 0 ? serverPath : path.join(baseDir, bin),
+    ["-E", path.join(baseDir, "main.lua")],
+  ]
 }
 
 async function luaLsExists(): Promise<boolean> {

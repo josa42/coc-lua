@@ -13,7 +13,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     return
   }
 
-  if (config.checkForUpdates !== "disabled") {
+  if (config.checkForUpdates !== "disabled" && config.serverPath.length === 0) {
     setTimeout(() => checkForUpdate(config.checkForUpdates), 0)
   }
 

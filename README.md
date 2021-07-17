@@ -164,9 +164,10 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 - **`Lua.workspace.checkThirdParty`** [Default: `true`]  
   Automatic detection and adaptation of third-party libraries, currently supported libraries are:
-      * OpenResty
-      * Cocos4.0
-      * Jass
+  
+  * OpenResty
+  * Cocos4.0
+  * Jass
 
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  
   Ignored files and directories (Use `.gitignore` grammar).

@@ -188,6 +188,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.workspace.useGitIgnore`** [Default: `true`]  
   Ignore files list in `.gitignore` .
 
+- **`Lua.workspace.userThirdParty`**  
+  Add private third-party library configuration file paths here, please refer to the built-in [configuration file path](https://github.com/sumneko/lua-language-server/tree/master/meta/3rd)
+
 ## Development
 
 1. Run `yarn build` or `yarn build:watch`

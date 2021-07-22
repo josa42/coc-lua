@@ -167,6 +167,7 @@ Trigger completion in `coc-settings.json` to get complete list.
   
   * OpenResty
   * Cocos4.0
+  * LÖVE
   * Jass
 
 - **`Lua.workspace.ignoreDir`** [Default: `[".vscode"]`]  

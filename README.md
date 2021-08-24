@@ -56,11 +56,17 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.completion.keywordSnippet`** [Default: `"Replace"`]  
   Shows keyword syntax snippets.
 
+- **`Lua.completion.requireSeparator`** [Default: `"."`]  
+  The separator used when `require`.
+
 - **`Lua.completion.showParams`** [Default: `true`]  
   Display parameters in completion list. When the function has multiple definitions, they will be displayed separately.
 
+- **`Lua.completion.showWord`** [Default: `"Fallback"`]  
+  Show contextual words in suggestions.
+
 - **`Lua.completion.workspaceWord`** [Default: `true`]  
-  Shows words within the workspace.
+  Whether the displayed context word contains the content of other files in the workspace.
 
 - **`Lua.diagnostics.disable`**  
   Disabled diagnostic (Use code in hover brackets).
@@ -70,6 +76,12 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 - **`Lua.diagnostics.globals`**  
   Defined global variables.
+
+- **`Lua.diagnostics.ignoredFiles`** [Default: `"Disable"`]  
+  How to diagnose ignored files.
+
+- **`Lua.diagnostics.libraryFiles`** [Default: `"Disable"`]  
+  How to diagnose files loaded via `Lua.workspace.library`.
 
 - **`Lua.diagnostics.neededFileStatus`**  
   If you want to check only opened files, choice Opened; else choice Any.
@@ -86,14 +98,14 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.hint.enable`** [Default: `false`]  
   Enabel hint.
 
-- **`Lua.hint.paramName`** [Default: `true`]  
-  Hint parameter name when the parameter called is literal.
+- **`Lua.hint.paramName`** [Default: `"All"`]  
+  Show hints of parameter name at the function call.
 
 - **`Lua.hint.paramType`** [Default: `true`]  
   Show type hints at the parameter of the function.
 
 - **`Lua.hint.setType`** [Default: `false`]  
-  Hint type at assignment operation.
+  Show hints of type at assignment operation.
 
 - **`Lua.hover.enable`** [Default: `true`]  
   Enable hover.
@@ -129,8 +141,10 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.runtime.nonstandardSymbol`**  
   Supports non-standard symbols. Make sure that your runtime environment supports these symbols.
 
-- **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua","?/?.lua"]`]  
-  `package.path`
+- **`Lua.runtime.path`** [Default: `["?.lua","?/init.lua"]`]  
+  When using `require`, how to find the file based on the input name.
+  Setting this config to `?/init.lua` means that when you enter `require 'myfile'`, all `**/myfile/init.lua` will be searched from the loaded files.
+  If you want to load files outside the workspace, you need to set `Lua.workspace.library` first.
 
 - **`Lua.runtime.plugin`** [Default: `""`]  
   Plugin path. Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/Plugin) to learn more.
@@ -177,8 +191,7 @@ Trigger completion in `coc-settings.json` to get complete list.
   Ignore submodules.
 
 - **`Lua.workspace.library`**  
-  The directory path of the external function library.
-  The language service will additionally load the lua files in these directories, even if they are not in the current workspace, for definition, completion and other features.
+  In addition to the current workspace, which directories will load files from.
 
 - **`Lua.workspace.maxPreload`** [Default: `1000`]  
   Max preloaded files.

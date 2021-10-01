@@ -47,7 +47,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.completion.callSnippet`** [Default: `"Disable"`]  
   Shows function call snippets.
 
-- **`Lua.completion.displayContext`** [Default: `6`]  
+- **`Lua.completion.displayContext`** [Default: `0`]  
   Previewing the relevant code snippet of the suggestion may help you understand the usage of the suggestion. The number set indicates the number of intercepted lines in the code fragment. If it is set to `0`, this feature can be disabled.
 
 - **`Lua.completion.enable`** [Default: `true`]  
@@ -77,10 +77,10 @@ Trigger completion in `coc-settings.json` to get complete list.
 - **`Lua.diagnostics.globals`**  
   Defined global variables.
 
-- **`Lua.diagnostics.ignoredFiles`** [Default: `"Disable"`]  
+- **`Lua.diagnostics.ignoredFiles`** [Default: `"Opened"`]  
   How to diagnose ignored files.
 
-- **`Lua.diagnostics.libraryFiles`** [Default: `"Disable"`]  
+- **`Lua.diagnostics.libraryFiles`** [Default: `"Opened"`]  
   How to diagnose files loaded via `Lua.workspace.library`.
 
 - **`Lua.diagnostics.neededFileStatus`**  

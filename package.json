@@ -301,6 +301,7 @@
           "type": "string"
         },
         "diagnostics.neededFileStatus": {
+          "additionalProperties": false,
           "markdownDescription": "If you want to check only opened files, choice Opened; else choice Any.\n",
           "properties": {
             "ambiguity-1": {
@@ -679,6 +680,7 @@
           "type": "object"
         },
         "diagnostics.severity": {
+          "additionalProperties": false,
           "markdownDescription": "Modified diagnostic severity.\n",
           "properties": {
             "ambiguity-1": {
@@ -1242,6 +1244,9 @@
             "path": {
               "$ref": "#/properties/runtime.path"
             },
+            "pathStrict": {
+              "$ref": "#/properties/runtime.pathStrict"
+            },
             "plugin": {
               "$ref": "#/properties/runtime.plugin"
             },
@@ -1257,6 +1262,7 @@
           }
         },
         "runtime.builtin": {
+          "additionalProperties": false,
           "markdownDescription": "Adjust the enabled state of the built-in library. You can disable (or redefine) the non-existent library according to the actual runtime environment.\n\n* `default`: Indicates that the library will be enabled or disabled according to the runtime version\n* `enable`: always enable\n* `disable`: always disable\n",
           "properties": {
             "basic": {
@@ -1453,7 +1459,7 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "When using `require`, how to find the file based on the input name.\nSetting this config to `?/init.lua` means that when you enter `require 'myfile'`, all `**/myfile/init.lua` will be searched from the loaded files.\nIf you want to load files outside the workspace, you need to set `Lua.workspace.library` first.\n",
+          "markdownDescription": "When using `require`, how to find the file based on the input name.\nSetting this config to `?/init.lua` means that when you enter `require 'myfile'`, `${workspace}/myfile/init.lua` will be searched from the loaded files.\nif `runtime.pathStrict` is `false`, `${workspace}/**/myfile/init.lua` will also be searched.\nIf you want to load files outside the workspace, you need to set `Lua.workspace.library` first.\n",
           "scope": "window",
           "type": "array"
         },
@@ -1464,6 +1470,7 @@
           "type": "string"
         },
         "runtime.special": {
+          "additionalProperties": false,
           "markdownDescription": "The custom global variables are regarded as some special built-in variables, and the language server will provide special support\nThe following example shows that 'include' is treated as' require '.\n```json\n\"Lua.runtime.special\" : {\n    \"include\" : \"require\"\n}\n```\n",
           "patternProperties": {
             ".*": {
@@ -1585,7 +1592,7 @@
         },
         "workspace.checkThirdParty": {
           "default": true,
-          "markdownDescription": "Automatic detection and adaptation of third-party libraries, currently supported libraries are:\n\n* OpenResty\n* Cocos4.0\n* LÖVE\n* Jass\n",
+          "markdownDescription": "Automatic detection and adaptation of third-party libraries, currently supported libraries are:\n\n* OpenResty\n* Cocos4.0\n* LÖVE\n* skynet\n* Jass\n",
           "scope": "window",
           "type": "boolean"
         },
@@ -1639,6 +1646,12 @@
           "markdownDescription": "Add private third-party library configuration file paths here, please refer to the built-in [configuration file path](https://github.com/sumneko/lua-language-server/tree/master/meta/3rd)",
           "scope": "window",
           "type": "array"
+        },
+        "runtime.pathStrict": {
+          "default": false,
+          "markdownDescription": "When enabled, `runtime.path` will only search the first level of directories, see the description of `runtime.path`.",
+          "scope": "window",
+          "type": "boolean"
         }
       }
     },

@@ -314,6 +314,16 @@
               ],
               "type": "string"
             },
+            "await-in-sync": {
+              "default": "None",
+              "description": "%config.diagnostics.await-in-sync%",
+              "enum": [
+                "Any",
+                "Opened",
+                "None"
+              ],
+              "type": "string"
+            },
             "circle-doc-class": {
               "default": "Any",
               "description": "%config.diagnostics.circle-doc-class%",
@@ -487,6 +497,16 @@
             "no-implicit-any": {
               "default": "None",
               "description": "%config.diagnostics.no-implicit-any%",
+              "enum": [
+                "Any",
+                "Opened",
+                "None"
+              ],
+              "type": "string"
+            },
+            "not-yieldable": {
+              "default": "None",
+              "description": "%config.diagnostics.not-yieldable%",
               "enum": [
                 "Any",
                 "Opened",
@@ -694,6 +714,17 @@
               ],
               "type": "string"
             },
+            "await-in-sync": {
+              "default": "Warning",
+              "description": "%config.diagnostics.await-in-sync%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "type": "string"
+            },
             "circle-doc-class": {
               "default": "Warning",
               "description": "%config.diagnostics.circle-doc-class%",
@@ -884,6 +915,17 @@
             "no-implicit-any": {
               "default": "Information",
               "description": "%config.diagnostics.no-implicit-any%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "type": "string"
+            },
+            "not-yieldable": {
+              "default": "Warning",
+              "description": "%config.diagnostics.not-yieldable%",
               "enum": [
                 "Error",
                 "Warning",
@@ -1423,7 +1465,9 @@
           "default": "utf8",
           "enum": [
             "utf8",
-            "ansi"
+            "ansi",
+            "utf16le",
+            "utf16be"
           ],
           "markdownDescription": "File encoding. The `ansi` option is only available under the `Windows` platform.",
           "scope": "window",

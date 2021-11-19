@@ -1654,6 +1654,46 @@
           "markdownDescription": "When enabled, `runtime.path` will only search the first level of directories, see the description of `runtime.path`.",
           "scope": "window",
           "type": "boolean"
+        },
+        "IntelliSense": {
+          "properties": {
+            "traceBeSetted": {
+              "$ref": "#/properties/IntelliSense.traceBeSetted"
+            },
+            "traceFieldInject": {
+              "$ref": "#/properties/IntelliSense.traceFieldInject"
+            },
+            "traceLocalSet": {
+              "$ref": "#/properties/IntelliSense.traceLocalSet"
+            },
+            "traceReturn": {
+              "$ref": "#/properties/IntelliSense.traceReturn"
+            }
+          }
+        },
+        "IntelliSense.traceBeSetted": {
+          "default": false,
+          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "scope": "window",
+          "type": "boolean"
+        },
+        "IntelliSense.traceFieldInject": {
+          "default": false,
+          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "scope": "window",
+          "type": "boolean"
+        },
+        "IntelliSense.traceLocalSet": {
+          "default": false,
+          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "scope": "window",
+          "type": "boolean"
+        },
+        "IntelliSense.traceReturn": {
+          "default": false,
+          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "scope": "window",
+          "type": "boolean"
         }
       }
     },

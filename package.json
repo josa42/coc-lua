@@ -357,6 +357,16 @@
               ],
               "type": "string"
             },
+            "codestyle-check": {
+              "default": "None",
+              "description": "%config.diagnostics.codestyle-check%",
+              "enum": [
+                "Any",
+                "Opened",
+                "None"
+              ],
+              "type": "string"
+            },
             "count-down-loop": {
               "default": "Any",
               "description": "%config.diagnostics.count-down-loop%",
@@ -763,6 +773,17 @@
             "code-after-break": {
               "default": "Hint",
               "description": "%config.diagnostics.code-after-break%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "type": "string"
+            },
+            "codestyle-check": {
+              "default": "Warning",
+              "description": "%config.diagnostics.codestyle-check%",
               "enum": [
                 "Error",
                 "Warning",

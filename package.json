@@ -1627,6 +1627,9 @@
           "default": null,
           "markdownDescription": "Enable telemetry to send your editor information and error logs over the network. Read our privacy policy [here](https://github.com/sumneko/lua-language-server/wiki/Privacy-Policy).\n",
           "scope": "resource",
+          "tags": [
+            "telemetry"
+          ],
           "type": [
             "boolean",
             "null"
@@ -1844,6 +1847,27 @@
         "semantic.variable": {
           "default": true,
           "markdownDescription": "Semantic coloring of variables/fields/parameters.",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "format": {
+          "properties": {
+            "defaultConfig": {
+              "$ref": "#/properties/format.defaultConfig"
+            },
+            "enable": {
+              "$ref": "#/properties/format.enable"
+            }
+          }
+        },
+        "format.defaultConfig": {
+          "markdownDescription": "%config.format.defaultConfig%",
+          "scope": "resource",
+          "type": "object"
+        },
+        "format.enable": {
+          "default": "true",
+          "markdownDescription": "Enable code formatter.",
           "scope": "resource",
           "type": "boolean"
         }

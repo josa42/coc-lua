@@ -948,7 +948,7 @@
             },
             "newline-call": {
               "default": "Information",
-              "description": "以 `(` 开始的新行，在语法上被解析为了上���行的函数调用",
+              "description": "以 `(` 开始的新行，在语法上被解析为了���一行的函数调用",
               "enum": [
                 "Error",
                 "Warning",

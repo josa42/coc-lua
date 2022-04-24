@@ -499,7 +499,7 @@
             },
             "newfield-call": {
               "default": "Any",
-              "description": "在字面量表中，2行代码之间缺少分隔符，在语法上被解析为��一次索引操作",
+              "description": "在字面量表中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
               "enum": [
                 "Any",
                 "Opened",
@@ -948,7 +948,7 @@
             },
             "newline-call": {
               "default": "Information",
-              "description": "以 `(` 开始的新行，在语法上被解析为了上一行的函数调用",
+              "description": "以 `(` 开始的新行，在语法上被解析为了上一���的函数调用",
               "enum": [
                 "Error",
                 "Warning",

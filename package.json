@@ -497,6 +497,26 @@
               ],
               "type": "string"
             },
+            "missing-parameter": {
+              "default": "Opened",
+              "description": "%config.diagnostics.missing-parameter%",
+              "enum": [
+                "Any",
+                "Opened",
+                "None"
+              ],
+              "type": "string"
+            },
+            "need-check-nil": {
+              "default": "Opened",
+              "description": "%config.diagnostics.need-check-nil%",
+              "enum": [
+                "Any",
+                "Opened",
+                "None"
+              ],
+              "type": "string"
+            },
             "newfield-call": {
               "default": "Any",
               "description": "在字面量表中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
@@ -935,6 +955,28 @@
               ],
               "type": "string"
             },
+            "missing-parameter": {
+              "default": "Warning",
+              "description": "%config.diagnostics.missing-parameter%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "type": "string"
+            },
+            "need-check-nil": {
+              "default": "Warning",
+              "description": "%config.diagnostics.need-check-nil%",
+              "enum": [
+                "Error",
+                "Warning",
+                "Information",
+                "Hint"
+              ],
+              "type": "string"
+            },
             "newfield-call": {
               "default": "Warning",
               "description": "在字面量表中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
@@ -948,7 +990,7 @@
             },
             "newline-call": {
               "default": "Information",
-              "description": "以 `(` 开始的新行，在语法上被解析为了上一���的函数调用",
+              "description": "以 `(` 开始的新行，在语法上被解析为了上一行的函数调用",
               "enum": [
                 "Error",
                 "Warning",
@@ -1576,7 +1618,8 @@
                 "dofile",
                 "loadfile",
                 "pcall",
-                "xpcall"
+                "xpcall",
+                "assert"
               ],
               "type": "string"
             }

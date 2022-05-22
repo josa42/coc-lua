@@ -935,7 +935,7 @@
             },
             "global-in-nil-env": {
               "default": "Warning",
-              "description": "Enable cannot use global variables ��� `_ENV` is set to `nil`） diagnostics.",
+              "description": "Enable cannot use global variables （ `_ENV` is set to `nil`） diagnostics.",
               "enum": [
                 "Error",
                 "Warning",

@@ -253,6 +253,7 @@
           }
         },
         "diagnostics.disable": {
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -267,6 +268,7 @@
           "type": "boolean"
         },
         "diagnostics.globals": {
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -1265,6 +1267,9 @@
             "arrayIndex": {
               "$ref": "#/properties/hint.arrayIndex"
             },
+            "await": {
+              "$ref": "#/properties/hint.await"
+            },
             "enable": {
               "$ref": "#/properties/hint.enable"
             },
@@ -1320,6 +1325,9 @@
             },
             "enumsLimit": {
               "$ref": "#/properties/hover.enumsLimit"
+            },
+            "expandAlias": {
+              "$ref": "#/properties/hover.expandAlias"
             },
             "previewFields": {
               "$ref": "#/properties/hover.previewFields"
@@ -1379,6 +1387,7 @@
           }
         },
         "misc.parameters": {
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -1393,6 +1402,9 @@
             },
             "fileEncoding": {
               "$ref": "#/properties/runtime.fileEncoding"
+            },
+            "meta": {
+              "$ref": "#/properties/runtime.meta"
             },
             "nonstandardSymbol": {
               "$ref": "#/properties/runtime.nonstandardSymbol"
@@ -1573,6 +1585,7 @@
             }
           },
           "scope": "resource",
+          "title": "builtin",
           "type": "object"
         },
         "runtime.fileEncoding": {
@@ -1584,10 +1597,17 @@
             "utf16be"
           ],
           "markdownDescription": "File encoding. The `ansi` option is only available under the `Windows` platform.",
+          "markdownEnumDescriptions": [
+            "%config.runtime.fileEncoding.utf8%",
+            "%config.runtime.fileEncoding.ansi%",
+            "%config.runtime.fileEncoding.utf16le%",
+            "%config.runtime.fileEncoding.utf16be%"
+          ],
           "scope": "resource",
           "type": "string"
         },
         "runtime.nonstandardSymbol": {
+          "default": [],
           "items": {
             "enum": [
               "//",
@@ -1629,6 +1649,7 @@
         },
         "runtime.special": {
           "additionalProperties": false,
+          "default": [],
           "markdownDescription": "The custom global variables are regarded as some special built-in variables, and the language server will provide special support\nThe following example shows that 'include' is treated as' require '.\n```json\n\"Lua.runtime.special\" : {\n    \"include\" : \"require\"\n}\n```\n",
           "patternProperties": {
             ".*": {
@@ -1649,6 +1670,7 @@
             }
           },
           "scope": "resource",
+          "title": "special",
           "type": "object"
         },
         "runtime.unicodeName": {
@@ -1667,6 +1689,13 @@
             "LuaJIT"
           ],
           "markdownDescription": "Lua runtime version.",
+          "markdownEnumDescriptions": [
+            "%config.runtime.version.Lua 5.1%",
+            "%config.runtime.version.Lua 5.2%",
+            "%config.runtime.version.Lua 5.3%",
+            "%config.runtime.version.Lua 5.4%",
+            "%config.runtime.version.LuaJIT%"
+          ],
           "scope": "resource",
           "type": "string"
         },
@@ -1779,6 +1808,7 @@
           "type": "boolean"
         },
         "workspace.library": {
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -1805,6 +1835,7 @@
           "type": "boolean"
         },
         "workspace.userThirdParty": {
+          "default": [],
           "items": {
             "type": "string"
           },
@@ -1931,8 +1962,17 @@
           }
         },
         "format.defaultConfig": {
+          "additionalProperties": false,
+          "default": [],
           "markdownDescription": "%config.format.defaultConfig%",
+          "patternProperties": {
+            ".*": {
+              "default": "",
+              "type": "string"
+            }
+          },
           "scope": "resource",
+          "title": "defaultConfig",
           "type": "object"
         },
         "format.enable": {
@@ -1962,6 +2002,40 @@
             "type": "string"
           },
           "markdownDescription": "Provide language server for the Lua files of the following scheme.",
+          "scope": "resource",
+          "type": "array"
+        },
+        "hint.await": {
+          "default": true,
+          "markdownDescription": "%config.hint.await%",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "hover.expandAlias": {
+          "default": true,
+          "markdownDescription": "%config.hover.expandAlias%",
+          "scope": "resource",
+          "type": "boolean"
+        },
+        "runtime.meta": {
+          "default": "${version} ${language} ${encoding}",
+          "markdownDescription": "%config.runtime.meta%",
+          "scope": "resource",
+          "type": "string"
+        },
+        "spell": {
+          "properties": {
+            "dict": {
+              "$ref": "#/properties/spell.dict"
+            }
+          }
+        },
+        "spell.dict": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "%config.spell.dict%",
           "scope": "resource",
           "type": "array"
         }

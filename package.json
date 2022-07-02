@@ -658,7 +658,7 @@
             },
             "newfield-call": {
               "default": "Any",
-              "description": "在字面量��中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
+              "description": "在字面量表中��2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
               "enum": [
                 "Any",
                 "Opened",

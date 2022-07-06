@@ -658,7 +658,7 @@
             },
             "newfield-call": {
               "default": "Any",
-              "description": "在字面量���中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
+              "description": "在字面量��中，2行代码之间缺少分隔符，在语法上被解析为了一次索引操作",
               "enum": [
                 "Any",
                 "Opened",
@@ -2881,6 +2881,9 @@
             "castNumberToInteger": {
               "$ref": "#/properties/type.castNumberToInteger"
             },
+            "weakNilCheck": {
+              "$ref": "#/properties/type.weakNilCheck"
+            },
             "weakUnionCheck": {
               "$ref": "#/properties/type.weakUnionCheck"
             }
@@ -2913,6 +2916,12 @@
           ],
           "scope": "resource",
           "type": "string"
+        },
+        "type.weakNilCheck": {
+          "default": false,
+          "markdownDescription": "When checking the type of union type, ignore the `nil` in it.\n\nWhen this setting is `false`, the `number|nil` type cannot be assigned to the `number` type. It can be with `true`.\n",
+          "scope": "resource",
+          "type": "boolean"
         }
       }
     },

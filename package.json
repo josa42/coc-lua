@@ -352,6 +352,7 @@
               "missing-return-value",
               "need-check-nil",
               "need-paren",
+              "nesting-long-mark",
               "newfield-call",
               "newline-call",
               "no-unknown",
@@ -724,7 +725,7 @@
             },
             "invisible": {
               "default": "Any",
-              "description": "%config.diagnostics.invisible%",
+              "description": "Enable diagnostics for accesses to fields which are invisible.",
               "enum": [
                 "Any",
                 "Opened",
@@ -1490,7 +1491,7 @@
             },
             "invisible": {
               "default": "Warning",
-              "description": "%config.diagnostics.invisible%",
+              "description": "Enable diagnostics for accesses to fields which are invisible.",
               "enum": [
                 "Error",
                 "Warning",
@@ -2448,7 +2449,7 @@
         },
         "runtime.special": {
           "additionalProperties": false,
-          "default": {},
+          "default": [],
           "markdownDescription": "The custom global variables are regarded as some special built-in variables, and the language server will provide special support\nThe following example shows that 'include' is treated as' require '.\n```json\n\"Lua.runtime.special\" : {\n    \"include\" : \"require\"\n}\n```\n",
           "patternProperties": {
             ".*": {
@@ -2764,7 +2765,7 @@
         },
         "format.defaultConfig": {
           "additionalProperties": false,
-          "default": {},
+          "default": [],
           "markdownDescription": "The default format configuration. Has a lower priority than `.editorconfig` file in the workspace.\nRead [formatter docs](https://github.com/CppCXY/EmmyLuaCodeStyle/tree/master/docs) to learn usage.\n",
           "patternProperties": {
             ".*": {
@@ -3208,21 +3209,21 @@
         },
         "typeFormat.config": {
           "additionalProperties": false,
-          "markdownDescription": "%config.typeFormat.config%",
+          "markdownDescription": "Configures the formatting behavior while typing Lua code.",
           "properties": {
             "auto_complete_end": {
               "default": "true",
-              "description": "%config.typeFormat.config.auto_complete_end%",
+              "description": "Controls if `end` is automatically completed at suitable positions.",
               "type": "string"
             },
             "auto_complete_table_sep": {
               "default": "true",
-              "description": "%config.typeFormat.config.auto_complete_table_sep%",
+              "description": "Controls if a separator is automatically appended at the end of a table declaration.",
               "type": "string"
             },
             "format_line": {
               "default": "true",
-              "description": "%config.typeFormat.config.format_line%",
+              "description": "Controls if a line is formatted at all.",
               "type": "string"
             }
           },
@@ -3291,6 +3292,19 @@
           "markdownDescription": "Specify the executable path in VSCode.",
           "scope": "resource",
           "type": "string"
+        },
+        "codeLens": {
+          "properties": {
+            "enable": {
+              "$ref": "#/properties/codeLens.enable"
+            }
+          }
+        },
+        "codeLens.enable": {
+          "default": false,
+          "markdownDescription": "Enable code lens.",
+          "scope": "resource",
+          "type": "boolean"
         }
       }
     },

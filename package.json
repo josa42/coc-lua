@@ -2575,9 +2575,6 @@
             "preloadFileSize": {
               "$ref": "#/properties/workspace.preloadFileSize"
             },
-            "supportScheme": {
-              "$ref": "#/properties/workspace.supportScheme"
-            },
             "useGitIgnore": {
               "$ref": "#/properties/workspace.useGitIgnore"
             },

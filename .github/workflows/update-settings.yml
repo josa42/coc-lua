@@ -21,7 +21,7 @@ jobs:
       run: |
         git diff
         if [[ "$(git diff --name-only)" == "" ]]; then
-          echo "::notice::No change since last published version"
+          echo "::notice::No update since last run"
           echo "has-changes=false" >> "$GITHUB_OUTPUT"
         else
           echo "has-changes=true" >> "$GITHUB_OUTPUT"

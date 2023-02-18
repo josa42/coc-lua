@@ -64,15 +64,17 @@ async function get(sourceUrl) {
 async function updateTable(sections) {
   const pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, "..", "package.json")))
 
-  let lines = Object.entries(pkg.contributes.configuration.properties)
-    .filter(([k]) => !k.match(/^lua\./))
+  let lines = Object.entries(pkg.contributes.configuration.properties.Lua.properties)
     .sort((p1, p2) => p1[0].localeCompare(p2[0]))
     .flatMap(([k, v]) => {
       const lines = []
-      lines.push(`- **\`${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
-      if (v.markdownDescription) {
-        lines.push("  " + v.markdownDescription.trim().split(/\n/).join("\n  "))
-        lines.push("")
+
+      if (!v.properties) {
+        lines.push(`- **\`Lua.${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
+        if (v.markdownDescription) {
+          lines.push("  " + v.markdownDescription.trim().split(/\n/).join("\n  "))
+          lines.push("")
+        }
       }
       return lines
     })

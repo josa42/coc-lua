@@ -3303,6 +3303,19 @@
           "markdownDescription": "Enable code lens.",
           "scope": "resource",
           "type": "boolean"
+        },
+        "addonManager": {
+          "properties": {
+            "enable": {
+              "$ref": "#/properties/addonManager.enable"
+            }
+          }
+        },
+        "addonManger.enable": {
+          "default": true,
+          "markdownDescription": "Set the on/off state for the addon manager.",
+          "scope": "resource",
+          "type": "boolean"
         }
       }
     },

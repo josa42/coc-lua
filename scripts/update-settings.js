@@ -22,7 +22,13 @@ async function run() {
 
   rmKey.forEach((k) => delete settings.properties[k])
 
-  Object.assign(props, settings.properties)
+  Object.assign(props, {
+    'Lua': {
+      type: "object",
+      description: 'Options for LuaLS/lua-language-server',
+      properties: settings.properties
+    }
+  })
 
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, "  ") + "\n")
 
@@ -59,7 +65,7 @@ async function updateTable(sections) {
   const pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, "..", "package.json")))
 
   let lines = Object.entries(pkg.contributes.configuration.properties)
-    .filter(([k]) => k.match(/^Lua/))
+    .filter(([k]) => !k.match(/^lua\./))
     .sort((p1, p2) => p1[0].localeCompare(p2[0]))
     .flatMap(([k, v]) => {
       const lines = []
@@ -71,7 +77,7 @@ async function updateTable(sections) {
       return lines
     })
 
-  sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", ...lines]
+  sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", "- `Lua`:", "", ...lines]
 }
 
 function parseMarkdown(source) {

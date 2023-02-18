@@ -1,6 +1,5 @@
 # coc-lua
 
-![build binaries](https://github.com/josa42/coc-lua-binaries/workflows/build/badge.svg)
 ![test](https://github.com/josa42/coc-lua/workflows/Main/badge.svg)
 
 --------------------------------------------------------------------------------
@@ -38,6 +37,9 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 ### LuaLS/lua-language-server
 
+- `Lua`:
+
+- **`Lua`**  
 ## Development
 
 1. Run `npm run build` or `npm run build:watch`

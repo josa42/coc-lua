@@ -37,6 +37,10 @@ async function createClient(): Promise<LanguageClient> {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: ["lua"],
+    progressOnInitialization: true,
+    initializationOptions: {
+      changeConfiguration: true,
+    }
   }
 
   return new LanguageClient("lua", "lua", serverOptions, clientOptions)

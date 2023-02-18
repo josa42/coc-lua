@@ -2,7 +2,7 @@ import which from "which"
 import { window } from "coc.nvim"
 
 export async function commandExists(bin: string): Promise<boolean> {
-  return new Promise((resolve) => which(bin, (err) => resolve(err == null)))
+  return Boolean(await which(bin, { nothrow: true }))
 }
 
 export async function showInstallStatus(name: string, fn: () => Promise<void>): Promise<void> {

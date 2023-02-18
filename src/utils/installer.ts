@@ -93,7 +93,7 @@ async function mkTmpDir(key: string): Promise<{ path: string; dispose: () => Pro
 
   await fsp.mkdir(dir, { recursive: true })
 
-  return { path: dir, dispose: async () => fsp.rmdir(dir, { recursive: true }) }
+  return { path: dir, dispose: async () => fsp.rm(dir, { recursive: true }) }
 }
 
 async function download(sourceUrl: string, targetPath: string): Promise<void> {

@@ -12,7 +12,7 @@ describe("installer", () => {
   })
 
   afterEach(async () => {
-    await fs.promises.rmdir(tmpDir, { recursive: true })
+    await fs.promises.rm(tmpDir, { recursive: true })
   })
 
   it("should install", async () => {

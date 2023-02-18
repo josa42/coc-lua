@@ -10,7 +10,8 @@
     "url": "https://github.com/josa42/coc-lua.git"
   },
   "engines": {
-    "coc": "^0.0.82"
+    "coc": "^0.0.82",
+    "node": ">=16"
   },
   "keywords": [
     "coc.nvim",

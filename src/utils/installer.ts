@@ -1,5 +1,3 @@
-// https://githb.com/neovim/nvim-lspconfi/blob/e38ff05afc3ad5d4fa8b24b4b0619429125582de/la/nvim_lsp/sumneko_lua.lua
-
 import * as crypto from "crypto"
 import * as fs from "fs"
 import * as https from "https"
@@ -9,11 +7,11 @@ import * as tar from "tar"
 
 import { window } from "coc.nvim"
 
-import { configDir, getConfig } from "./config"
+import { configDir } from "./config"
 import { showInstallStatus } from "./tools"
 import { dbGet, dbSet } from "./db"
 
-const luaLsDir = "sumneko-lua-ls"
+const luaLsDir = "lua-language-server"
 const oneDayMS = 24 * 60 * 60 * 1000
 
 const fsp = fs.promises
@@ -23,24 +21,69 @@ const tmpBaseDir = os.tmpdir()
 
 const { join } = path
 
-function releaseDownloadsURL(filePath: string): string {
-  return getConfig().installPreReleases
-    ? `https://github.com/josa42/coc-lua-binaries/releases/download/latest/${filePath}`
-    : `https://github.com/josa42/coc-lua-binaries/releases/latest/download/${filePath}`
+const latestURL = 'https://api.github.com/repos/LuaLS/lua-language-server/releases/latest'
+
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')) as {version: string}
+
+const DBKey = {
+  VERSION: 'installed-version',
+  PUBLISHED_AT: 'installed-version-published-at',
+  LAST_UPDATE_CHECK: "last-update-check",
+}
+
+interface LatestResponse {
+  tag_name: string
+  published_at: string
+  assets: Array<{
+    name: string
+    browser_download_url: string
+  }>
+}
+
+interface Version {
+  version: string
+  publishedAt: number
+}
+
+interface Release extends Version {
+  url: string
+}
+
+
+async function getLatestRelease(filePath: string): Promise<Release> {
+  const { assets, tag_name: version, published_at } = await getJSON<LatestResponse>(latestURL)
+  const { browser_download_url: url } =  assets.find(({ name }) => name.endsWith(filePath)) ?? {}
+
+  return { version, publishedAt: new Date(published_at).getTime(), url }
+}
+
+async function getLatestVersion(): Promise<Version> {
+  const { tag_name: version, published_at } = await getJSON<LatestResponse>(latestURL)
+
+  return { version, publishedAt: new Date(published_at).getTime() }
 }
 
 export async function install(dir: string): Promise<void> {
   const { tarFile } = osEnv()
-  await downloadTar(releaseDownloadsURL(tarFile), dir)
+  const { url, version, publishedAt } = await getLatestRelease(tarFile)
+  await downloadTar(url, dir)
+  await dbSet(DBKey.VERSION, version)
+  await dbSet(DBKey.PUBLISHED_AT, publishedAt)
 }
 
 async function downloadTar(sourceUrl: string, targetPath: string) {
   const dir = await mkTmpDir(sourceUrl)
 
-  const tarTmpPath = join(dir.path, "tmp.tar.gz")
+  if (osPlatform === 'win32') {
+    throw new Error('Windows is not currently supported')
 
-  await download(sourceUrl, tarTmpPath)
-  await tar.x({ file: tarTmpPath, cwd: targetPath, strip: 1 })
+  } else {
+    const tarTmpPath = join(dir.path, "tmp.tar.gz")
+
+    await download(sourceUrl, tarTmpPath)
+    await tar.x({ file: tarTmpPath, cwd: targetPath, strip: 0 })
+  }
+
   await dir.dispose()
 }
 
@@ -79,18 +122,22 @@ export function osEnv(): { tarFile: string; bin: string } {
   switch (osPlatform) {
     case "darwin":
       return {
-        tarFile: "lua-language-server-macos.tar.gz",
-        bin: join("bin", "macOS", "lua-language-server"),
+        tarFile: process.arch === 'arm64'
+          ? "darwin-arm64.tar.gz"
+          : "darwin-x64.tar.gz",
+        bin: join("bin", "lua-language-server"),
       }
     case "linux":
       return {
-        tarFile: "lua-language-server-linux.tar.gz",
-        bin: join("bin", "Linux", "lua-language-server"),
+        tarFile: process.arch === 'arm64'
+          ? "linux-arm64.tar.gz"
+          : "linux-x64.tar.gz",
+        bin: join("bin", "lua-language-server"),
       }
     case "win32":
       return {
-        tarFile: "lua-language-server-windows.tar.gz",
-        bin: join("bin", "Windows", "lua-language-server.exe"),
+        tarFile: "win32-x64.zip",
+        bin: join("bin", "lua-language-server.exe"),
       }
   }
   return { tarFile: "", bin: "" }
@@ -106,9 +153,9 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
   statusItem.show()
 
   try {
-    const rinfo = await getVersionInfo()
-    const linfo = await getVersionInstalledInfo()
-    if (new Date(rinfo.date) > new Date(linfo.date)) {
+    const rinfo = (await getLatestVersion())
+    const linfo = await dbGet<number>(DBKey.PUBLISHED_AT)
+    if (rinfo.publishedAt > linfo) {
       handleUpdateAction(action, rinfo.version)
     }
   } catch (err) {
@@ -120,11 +167,11 @@ export async function checkForUpdate(action: "disabled" | "inform" | "ask" | "in
 
 async function shouldCheck(): Promise<boolean> {
   const now = new Date().getTime()
-  const last = await dbGet("last-update-check", -1)
+  const last = await dbGet(DBKey.LAST_UPDATE_CHECK, -1)
   const diff = now - last
 
   if (last === -1 || diff > oneDayMS) {
-    await dbSet("last-update-check", now)
+    await dbSet(DBKey.LAST_UPDATE_CHECK, now)
     return true
   }
 
@@ -134,7 +181,7 @@ async function shouldCheck(): Promise<boolean> {
 async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "install", version: string) {
   switch (action) {
     case "ask":
-      if (await window.showPrompt(`sumneko/lua-language-server ${version} is available. Install?`)) {
+      if (await window.showPrompt(`LuaLS/lua-language-server ${version} is available. Install?`)) {
         installLuaLs(true)
       }
       break
@@ -142,7 +189,7 @@ async function handleUpdateAction(action: "disabled" | "inform" | "ask" | "insta
       installLuaLs(true)
       break
     case "inform":
-      window.showMessage(`sumneko/lua-language-server ${version} is available. Run ":CocCommand lua.update"`)
+      window.showMessage(`LuaLS/lua-language-server ${version} is available. Run ":CocCommand lua.update"`)
       break
   }
 }
@@ -152,7 +199,7 @@ export async function installLuaLs(force = false): Promise<void> {
     return
   }
 
-  await showInstallStatus("sumneko/lua-language-server", async () => {
+  await showInstallStatus("LuaLS/lua-language-server", async () => {
     await install(await configDir(luaLsDir))
   })
 }
@@ -169,43 +216,23 @@ async function luaLsExists(): Promise<boolean> {
   return new Promise((resolve) => fs.open(bin, "r", (err) => resolve(err === null)))
 }
 
-interface versionInfo {
-  date: string
-  version: string
-  commit: string
-}
-
-async function getVersionInstalledInfo(): Promise<versionInfo> {
-  try {
-    const fpath = path.join(await configDir(luaLsDir), "version.json")
-    return JSON.parse(await fs.promises.readFile(fpath, "utf-8"))
-  } catch (err) {
-    if (err.code !== "ENOENT") {
-      window.showMessage(JSON.stringify(err), "error")
+const getOptions = {
+    headers: {
+        'User-Agent': `coc-lua/${pkg.version}`,
     }
-
-    return { date: "", version: "", commit: "" }
-  }
 }
 
-async function getVersionInfo(): Promise<versionInfo> {
+async function getJSON<R>(url: string): Promise<R> {
   return new Promise((resolve, reject) => {
-    const get = (url: string) =>
-      https.get(url, (res) => {
-        const { statusCode } = res
+    https
+      .get(url, getOptions, (resp) => {
+        let data = ""
 
-        if (statusCode === 301 || statusCode === 302) {
-          return get(res.headers.location)
-        }
-
-        let out = ""
-
-        res
-          .on("data", (data) => (out += data))
-          .on("end", () => resolve(JSON.parse(out)))
-          .on("error", (err: Error) => reject(err))
+        resp.on("data", (chunk) => (data += chunk))
+        resp.on("end", () => {
+          resolve(JSON.parse(data) as R)
+        })
       })
-
-    return get(releaseDownloadsURL("version.json"))
+      .on("error", (err) => reject(err))
   })
 }

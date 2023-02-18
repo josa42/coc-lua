@@ -65,6 +65,8 @@ EOF
 
 cat > $TMP/config/nvim/coc-settings.json <<EOF
 {
+  "lua": { "checkForUpdates": "never" },
+  "lua.ignoreDeprecation": true,
 }
 EOF
 

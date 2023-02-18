@@ -23,11 +23,12 @@ async function run() {
   rmKey.forEach((k) => delete settings.properties[k])
 
   Object.assign(props, {
-    'Lua': {
-      type: "object",
-      description: 'Options for LuaLS/lua-language-server',
-      properties: settings.properties
-    }
+    ...Object.fromEntries(
+      Object.entries(settings.properties)
+        .filter(([,value]) => !value.properties)
+        .map(([key,value]) => [`Lua.${key.replace('addonManger', 'addonManager')}`, value])
+
+    )
   })
 
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, "  ") + "\n")
@@ -64,13 +65,14 @@ async function get(sourceUrl) {
 async function updateTable(sections) {
   const pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, "..", "package.json")))
 
-  let lines = Object.entries(pkg.contributes.configuration.properties.Lua.properties)
+  let lines = Object.entries(pkg.contributes.configuration.properties)
+    .filter(([k]) => k.startsWith('Lua.'))
     .sort((p1, p2) => p1[0].localeCompare(p2[0]))
     .flatMap(([k, v]) => {
       const lines = []
 
       if (!v.properties) {
-        lines.push(`- **\`Lua.${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
+        lines.push(`- **\`${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
         if (v.markdownDescription) {
           lines.push("  " + v.markdownDescription.trim().split(/\n/).join("\n  "))
           lines.push("")
@@ -79,7 +81,7 @@ async function updateTable(sections) {
       return lines
     })
 
-  sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", "- `Lua`:", "", ...lines]
+  sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", ...lines]
 }
 
 function parseMarkdown(source) {
@@ -97,11 +99,27 @@ function parseMarkdown(source) {
   }, [])
 }
 
-function fixSchema(schema) {
+function fixSchema(schema, base = undefined) {
+  base = base ?? schema
+
+  if (schema['$ref']) {
+    const [,key,prop] = schema['$ref'].match(/^#\/([^/]+)\/(.*)/) ?? []
+
+    if (prop === 'addonManager.enable' && base[key]?.['addonManger.enable']) {
+      return base[key]?.['addonManger.enable']
+    }
+
+    if (!key || !prop || !base[key]?.[prop]) {
+      console.log(Object.keys(base[key]))
+      throw new Error(`ref / "${prop}" not found: ${schema['$ref']}`)
+    }
+
+    return base[key]?.[prop]
+  }
 
   if (schema.properties) {
     Object.entries(schema.properties).forEach(([key, value]) => {
-      schema.properties[key] = fixSchema(value)
+      schema.properties[key] = fixSchema(value, base)
     })
   }
 
@@ -112,7 +130,7 @@ function fixSchema(schema) {
         key = '.*'
       }
 
-      schema.patternProperties[key] = fixSchema(value)
+      schema.patternProperties[key] = fixSchema(value, base)
     })
   }
 

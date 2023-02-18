@@ -37,7 +37,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 ### LuaLS/lua-language-server
 
-- **`Lua.addonManger.enable`** [Default: `true`]  
+- **`Lua.addonManager.enable`** [Default: `true`]  
   Set the on/off state for the addon manager.
 
 - **`Lua.codeLens.enable`** [Default: `false`]  

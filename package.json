@@ -43,7 +43,7 @@
           "default": true
         },
         "lua.checkForUpdates": {
-          "description": "Check for sumneko/lua-language-server updates on start.",
+          "description": "Check for LuaLS/lua-language-server updates on start.",
           "type": "string",
           "default": "inform",
           "enum": [
@@ -54,7 +54,7 @@
           ]
         },
         "lua.installPreReleases": {
-          "description": "Install latest pre-release of sumneko/lua-language-server.",
+          "description": "Install latest pre-release of LuaLS/lua-language-server.",
           "type": "boolean",
           "default": false
         },
@@ -2524,7 +2524,7 @@
         },
         "telemetry.enable": {
           "default": null,
-          "markdownDescription": "Enable telemetry to send your editor information and error logs over the network. Read our privacy policy [here](https://github.com/sumneko/lua-language-server/wiki/Home#privacy).\n",
+          "markdownDescription": "Enable telemetry to send your editor information and error logs over the network. Read our privacy policy [here](https://github.com/LuaLS/lua-language-server/wiki/Home#privacy).\n",
           "scope": "resource",
           "tags": [
             "telemetry"
@@ -2667,25 +2667,25 @@
         },
         "IntelliSense.traceBeSetted": {
           "default": false,
-          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "markdownDescription": "Please read [wiki](https://github.com/LuaLS/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
           "scope": "resource",
           "type": "boolean"
         },
         "IntelliSense.traceFieldInject": {
           "default": false,
-          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "markdownDescription": "Please read [wiki](https://github.com/LuaLS/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
           "scope": "resource",
           "type": "boolean"
         },
         "IntelliSense.traceLocalSet": {
           "default": false,
-          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "markdownDescription": "Please read [wiki](https://github.com/LuaLS/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
           "scope": "resource",
           "type": "boolean"
         },
         "IntelliSense.traceReturn": {
           "default": false,
-          "markdownDescription": "Please read [wiki](https://github.com/sumneko/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
+          "markdownDescription": "Please read [wiki](https://github.com/LuaLS/lua-language-server/wiki/IntelliSense-optional-features) to learn more.",
           "scope": "resource",
           "type": "boolean"
         },

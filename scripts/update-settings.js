@@ -10,7 +10,7 @@ const rmKey = ["Lua.awakened.cat", "Lua.develop.enable", "Lua.develop.debuggerPo
 
 async function run() {
   const settings = fixSchema(JSON.parse(
-    await get("https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json")
+    await get("https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json")
   ))
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"))
   const props = pkg.contributes.configuration.properties
@@ -71,7 +71,7 @@ async function updateTable(sections) {
       return lines
     })
 
-  sections.find((s) => s.title === "### sumneko/lua-language-server").lines = ["", ...lines]
+  sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", ...lines]
 }
 
 function parseMarkdown(source) {

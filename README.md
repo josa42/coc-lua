@@ -5,7 +5,7 @@
 
 --------------------------------------------------------------------------------
 
-Lua language server extension using [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
+Lua language server extension using [`LuaLS/lua-language-server`](https://github.com/LuaLS/lua-language-server)
 for [`coc.nvim`](https://github.com/neoclide/coc.nvim)
 (pre-build binaries: [coc-lua-binaries](https://github.com/josa42/coc-lua-binaries/releases/tag/latest)).
 
@@ -20,7 +20,7 @@ In your vim/neovim, run command:
 ## Features
 
 See
-- [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server)
+- [`LuaLS/lua-language-server`](https://github.com/LuaLS/lua-language-server)
 
 ## Commands
 
@@ -36,7 +36,7 @@ See
 
 Trigger completion in `coc-settings.json` to get complete list.
 
-### sumneko/lua-language-server
+### LuaLS/lua-language-server
 
 ## Development
 
@@ -45,7 +45,7 @@ Trigger completion in `coc-settings.json` to get complete list.
 
 ## Credit
 
-- [`sumneko/lua-language-server`](https://github.com/sumneko/lua-language-server#credit)
+- [`LuaLS/lua-language-server`](https://github.com/LuaLS/lua-language-server#credit)
 
 ## License
 

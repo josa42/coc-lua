@@ -5,8 +5,7 @@
 --------------------------------------------------------------------------------
 
 Lua language server extension using [`LuaLS/lua-language-server`](https://github.com/LuaLS/lua-language-server)
-for [`coc.nvim`](https://github.com/neoclide/coc.nvim)
-(pre-build binaries: [coc-lua-binaries](https://github.com/josa42/coc-lua-binaries/releases/tag/latest)).
+for [`coc.nvim`](https://github.com/neoclide/coc.nvim).
 
 ## Install
 

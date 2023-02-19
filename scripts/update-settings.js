@@ -69,17 +69,20 @@ async function updateTable(sections) {
     .filter(([k]) => k.startsWith('Lua.'))
     .sort((p1, p2) => p1[0].localeCompare(p2[0]))
     .flatMap(([k, v]) => {
-      const lines = []
+      const lines = [
+      ]
 
       if (!v.properties) {
-        lines.push(`- **\`${k}\`**` + (v.default !== undefined ? ` [Default: \`${JSON.stringify(v.default)}\`]  ` : "  "))
-        if (v.markdownDescription) {
-          lines.push("  " + v.markdownDescription.trim().split(/\n/).join("\n  "))
-          lines.push("")
-        }
+        lines.push(`| **\`${k}\`** | ${v?.markdownDescription.trim().split(/\n/).join("<br>") ?? ''} | ${v.default ? JSON.stringify(v.default) : ''} |`)
       }
       return lines
     })
+
+  lines = [
+    '| Key | Description | Default |',
+    '|-----|-------------|---------|',
+    ...lines,
+  ]
 
   sections.find((s) => s.title === "### LuaLS/lua-language-server").lines = ["", ...lines]
 }

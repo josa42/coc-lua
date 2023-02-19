@@ -26,7 +26,7 @@ async function run() {
     ...Object.fromEntries(
       Object.entries(settings.properties)
         .filter(([,value]) => !value.properties)
-        .map(([key,value]) => [`Lua.${key.replace('addonManger', 'addonManager')}`, value])
+        .map(([key,value]) => [`Lua.${key}`, value])
 
     )
   })
@@ -104,10 +104,6 @@ function fixSchema(schema, base = undefined) {
 
   if (schema['$ref']) {
     const [,key,prop] = schema['$ref'].match(/^#\/([^/]+)\/(.*)/) ?? []
-
-    if (prop === 'addonManager.enable' && base[key]?.['addonManger.enable']) {
-      return base[key]?.['addonManger.enable']
-    }
 
     if (!key || !prop || !base[key]?.[prop]) {
       console.log(Object.keys(base[key]))

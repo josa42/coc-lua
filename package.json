@@ -25,8 +25,6 @@
     "prepare": "npm run clean && npm run build",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "lint": "eslint . --ext .ts,.js",
-    "link": "npm run build && coc-dev link",
-    "unlink": "coc-dev unlink",
     "test": "jest"
   },
   "activationEvents": [
@@ -867,7 +865,6 @@
     "@types/which": "^2.0.2",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
-    "coc-dev-tools": "^0.1.0",
     "coc.nvim": "0.0.82",
     "eslint": "8.34.0",
     "eslint-config-josa-typescript": "^0.1.2",
